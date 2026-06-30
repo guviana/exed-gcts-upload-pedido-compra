@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?><asx:abap xmlns:asx="http://www.sap.com/abapxml">
+<asx:values>
+<NAMETAB>
+<NAMETAB>
+<NAME>SRVC_NAME</NAME>
+<KEY>X</KEY>
+<TYPE>C</TYPE>
+<LENGTH>000040</LENGTH>
+<DECIMALS>-1</DECIMALS>
+</NAMETAB>
+<NAMETAB>
+<NAME>VERSION</NAME>
+<KEY>X</KEY>
+<TYPE>C</TYPE>
+<LENGTH>000001</LENGTH>
+<DECIMALS>-1</DECIMALS>
+</NAMETAB>
+<NAMETAB>
+<NAME>EDMX_CONTENT</NAME>
+<KEY></KEY>
+<TYPE>R</TYPE>
+<LENGTH>000008</LENGTH>
+<DECIMALS>-1</DECIMALS>
+</NAMETAB>
+</NAMETAB>
+</asx:values>
+</asx:abap>
