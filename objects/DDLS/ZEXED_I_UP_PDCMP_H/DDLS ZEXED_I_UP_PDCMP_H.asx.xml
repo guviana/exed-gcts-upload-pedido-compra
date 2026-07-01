@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?><asx:abap xmlns:asx="http://www.sap.com/abapxml">
+<asx:values>
+<DDDDLSRC>
+<DDDDLSRC>
+<DDLNAME>ZEXED_I_UP_PDCMP_H</DDLNAME>
+<AS4LOCAL>N</AS4LOCAL>
+<AS4USER>SAP_CUSTOMER</AS4USER>
+<AS4DATE>0000-00-00</AS4DATE>
+<AS4TIME>00:00:00</AS4TIME>
+<SOURCE>@AbapCatalog.viewEnhancementCategory: [#NONE]
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'Upload PO - Header (Intf.)'
+@VDM.viewType: #COMPOSITE
+define view entity ZEXED_I_UP_PDCMP_H
+  as select from zexed_up_pdcmp_h
+
+  association [0..1] to I_BusinessUserBasic      as _UserCreate             on $projection.LocalCreatedBy = _UserCreate.UserID
+  association [0..1] to I_BusinessUserBasic      as _UserChange             on $projection.LocalLastChangedBy = _UserChange.UserID
+  association [0..1] to I_CompanyCode            as _Company                on $projection.CompanyCode = _Company.CompanyCode
+  association [0..1] to I_Supplier               as _Supplier               on $projection.Supplier = _Supplier.Supplier
+  //  association [0..1] to I_PurchasingDocumentType as _PurchasingDocumentType on  _PurchasingDocumentType.PurchasingDocumentCategory = 'F' //purchase order
+  //                                                                            and $projection.PurchaseOrderType2                     = _PurchasingDocumentType.PurchasingDocumentType
+
+  association [0..1] to I_PurchasingOrganization as _PurchasingOrganization on $projection.PurchaseOrganization = _PurchasingOrganization.PurchasingOrganization
+
+  association [0..1] to I_PurchasingGroup        as _PurchasingGroup        on $projection.PurchaseGroup = _PurchasingGroup.PurchasingGroup
+
+  association [0..1] to I_PaymentTerms           as _PaymentTerms           on $projection.PaymentTerms = _PaymentTerms.PaymentTerms
+
+  association        to parent ZEXED_I_UP_PDCMP  as _File                   on $projection.ParentUUID = _File.UUID
+
+  composition [0..*] of ZEXED_I_UP_PDCMP_I       as _Itens
+{
+  key  uuid                                                        as UUID,
+       parent_uuid                                                 as ParentUUID,
+       status                                                      as Status,
+       case status
+        when 'Erro'          then 1
+        when 'Não publicado' then 2
+        when 'Publicado'     then 3
+        else 0
+       end                                                         as CriticalityStatus,
+       purchase_order                                              as PurchaseOrder,
+       concat_with_space('Pedido:',ltrim( purchase_order, '0' ),1) as LabelPurchaseOrder,
+       purchase_order_type                                         as PurchaseOrderType2,
+       purchase_order_date                                         as PurchaseOrderDate,
+       company_code                                                as CompanyCode,
+       purchase_org                                                as PurchaseOrganization,
+       purchase_grp                                                as PurchaseGroup,
+       supplier                                                    as Supplier,
+       payment_terms                                               as PaymentTerms,
+       _Company.CompanyCodeName                                    as CompanyName,
+       _Supplier.BPSupplierFullName                                as SupplierName,
+       _PurchasingOrganization.PurchasingOrganizationName          as PurchaseOrganizationName,
+       _PurchasingGroup.PurchasingGroupName                        as PurchaseGroupName,
+       @Semantics.user.createdBy: true
+       local_created_by                                            as LocalCreatedBy,
+
+       _UserCreate.PersonFullName                                  as NameUserCreate,
+
+       @Semantics.systemDateTime.createdAt: true
+       local_created_at                                            as LocalCreatedAt,
+
+       @Semantics.user.lastChangedBy: true
+       local_last_changed_by                                       as LocalLastChangedBy,
+
+       _UserChange.PersonFullName                                  as NameUserChange,
+
+       @Semantics.systemDateTime.localInstanceLastChangedAt: true
+       local_last_changed_at                                       as LocalLastChangedAt,
+
+       @Semantics.systemDateTime.lastChangedAt: true
+       last_changed_at                                             as LastChangedAt,
+       //Associations
+       _File,
+       _Itens
+}
+/*+[internal] {
+"BASEINFO":
+{
+"FROM":
+[
+"I_BUSINESSUSERBASIC",
+"I_COMPANYCODE",
+"I_PURCHASINGGROUP",
+"I_PURCHASINGORGANIZATION",
+"I_SUPPLIER",
+"ZEXED_UP_PDCMP_H"
+],
+"ASSOCIATED":
+[
+"ZEXED_I_UP_PDCMP",
+"ZEXED_I_UP_PDCMP_I"
+],
+"BASE":
+[],
+"ANNO_REF":
+[],
+"SCALAR_FUNCTION":
+[],
+"VERSION":0,
+"ANNOREF_EVALUATION_ERROR":""
+}
+}*/</SOURCE>
+<PARENTNAME></PARENTNAME>
+<ACTFLAG></ACTFLAG>
+<CHGFLAG></CHGFLAG>
+<SOURCE_TYPE>W</SOURCE_TYPE>
+<SOURCE_ORIGIN>0</SOURCE_ORIGIN>
+<ABAP_LANGUAGE_VERSION>5</ABAP_LANGUAGE_VERSION>
+</DDDDLSRC>
+</DDDDLSRC>
+<DDDDLSRC02BT>
+<DDDDLSRC02BT>
+<DDLNAME>ZEXED_I_UP_PDCMP_H</DDLNAME>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_H</STRUCOBJN>
+<DDLANGUAGE>E</DDLANGUAGE>
+<AS4LOCAL>N</AS4LOCAL>
+<DDTEXT>Upload PO - Header (Intf.)</DDTEXT>
+</DDDDLSRC02BT>
+</DDDDLSRC02BT>
+<DDDDLSRCT>
+<DDDDLSRCT>
+<DDLNAME>ZEXED_I_UP_PDCMP_H</DDLNAME>
+<DDLANGUAGE>E</DDLANGUAGE>
+<AS4LOCAL>N</AS4LOCAL>
+<DDTEXT>Upload Pedido de Compra - Header (Intf.)</DDTEXT>
+</DDDDLSRCT>
+</DDDDLSRCT>
+<DDFIELDANNO>
+<DDFIELDANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_H</STRUCOBJN>
+<LFIELDNAME>LASTCHANGEDAT</LFIELDNAME>
+<NAME>SEMANTICS</NAME>
+<POSITION>11</POSITION>
+<VALUE></VALUE>
+</DDFIELDANNO>
+<DDFIELDANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_H</STRUCOBJN>
+<LFIELDNAME>LASTCHANGEDAT</LFIELDNAME>
+<NAME>SEMANTICS.SYSTEMDATETIME.LASTCHANGEDAT</NAME>
+<POSITION>12</POSITION>
+<VALUE>true</VALUE>
+</DDFIELDANNO>
+<DDFIELDANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_H</STRUCOBJN>
+<LFIELDNAME>LOCALCREATEDAT</LFIELDNAME>
+<NAME>SEMANTICS</NAME>
+<POSITION>5</POSITION>
+<VALUE></VALUE>
+</DDFIELDANNO>
+<DDFIELDANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_H</STRUCOBJN>
+<LFIELDNAME>LOCALCREATEDAT</LFIELDNAME>
+<NAME>SEMANTICS.SYSTEMDATETIME.CREATEDAT</NAME>
+<POSITION>6</POSITION>
+<VALUE>true</VALUE>
+</DDFIELDANNO>
+<DDFIELDANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_H</STRUCOBJN>
+<LFIELDNAME>LOCALCREATEDBY</LFIELDNAME>
+<NAME>SEMANTICS</NAME>
+<POSITION>3</POSITION>
+<VALUE></VALUE>
+</DDFIELDANNO>
+<DDFIELDANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_H</STRUCOBJN>
+<LFIELDNAME>LOCALCREATEDBY</LFIELDNAME>
+<NAME>SEMANTICS.USER.CREATEDBY</NAME>
+<POSITION>4</POSITION>
+<VALUE>true</VALUE>
+</DDFIELDANNO>
+<DDFIELDANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_H</STRUCOBJN>
+<LFIELDNAME>LOCALLASTCHANGEDAT</LFIELDNAME>
+<NAME>SEMANTICS</NAME>
+<POSITION>9</POSITION>
+<VALUE></VALUE>
+</DDFIELDANNO>
+<DDFIELDANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_H</STRUCOBJN>
+<LFIELDNAME>LOCALLASTCHANGEDAT</LFIELDNAME>
+<NAME>SEMANTICS.SYSTEMDATETIME.LOCALINSTANCELASTCHANGEDAT</NAME>
+<POSITION>10</POSITION>
+<VALUE>true</VALUE>
+</DDFIELDANNO>
+<DDFIELDANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_H</STRUCOBJN>
+<LFIELDNAME>LOCALLASTCHANGEDBY</LFIELDNAME>
+<NAME>SEMANTICS</NAME>
+<POSITION>7</POSITION>
+<VALUE></VALUE>
+</DDFIELDANNO>
+<DDFIELDANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_H</STRUCOBJN>
+<LFIELDNAME>LOCALLASTCHANGEDBY</LFIELDNAME>
+<NAME>SEMANTICS.USER.LASTCHANGEDBY</NAME>
+<POSITION>8</POSITION>
+<VALUE>true</VALUE>
+</DDFIELDANNO>
+<DDFIELDANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_H</STRUCOBJN>
+<LFIELDNAME>MANDT</LFIELDNAME>
+<NAME>ABAPCATALOG</NAME>
+<POSITION>1</POSITION>
+<VALUE></VALUE>
+</DDFIELDANNO>
+<DDFIELDANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_H</STRUCOBJN>
+<LFIELDNAME>MANDT</LFIELDNAME>
+<NAME>ABAPCATALOG.INTERNAL.ISMANDT</NAME>
+<POSITION>2</POSITION>
+<VALUE></VALUE>
+</DDFIELDANNO>
+</DDFIELDANNO>
+<DDHEADANNO>
+<DDHEADANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_H</STRUCOBJN>
+<NAME>ABAPCATALOG</NAME>
+<POSITION>1</POSITION>
+<VALUE></VALUE>
+</DDHEADANNO>
+<DDHEADANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_H</STRUCOBJN>
+<NAME>ABAPCATALOG.VIEWENHANCEMENTCATEGORY$1$</NAME>
+<POSITION>2</POSITION>
+<VALUE>#NONE</VALUE>
+</DDHEADANNO>
+<DDHEADANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_H</STRUCOBJN>
+<NAME>ACCESSCONTROL</NAME>
+<POSITION>3</POSITION>
+<VALUE></VALUE>
+</DDHEADANNO>
+<DDHEADANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_H</STRUCOBJN>
+<NAME>ACCESSCONTROL.AUTHORIZATIONCHECK</NAME>
+<POSITION>4</POSITION>
+<VALUE>#NOT_REQUIRED</VALUE>
+</DDHEADANNO>
+<DDHEADANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_H</STRUCOBJN>
+<NAME>ENDUSERTEXT</NAME>
+<POSITION>5</POSITION>
+<VALUE></VALUE>
+</DDHEADANNO>
+<DDHEADANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_H</STRUCOBJN>
+<NAME>ENDUSERTEXT.LABEL</NAME>
+<POSITION>6</POSITION>
+<VALUE>'Upload PO - Header (Intf.)'</VALUE>
+</DDHEADANNO>
+<DDHEADANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_H</STRUCOBJN>
+<NAME>VDM</NAME>
+<POSITION>7</POSITION>
+<VALUE></VALUE>
+</DDHEADANNO>
+<DDHEADANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_H</STRUCOBJN>
+<NAME>VDM.VIEWTYPE</NAME>
+<POSITION>8</POSITION>
+<VALUE>#COMPOSITE</VALUE>
+</DDHEADANNO>
+</DDHEADANNO>
+<DDLDEPENDENCY>
+<DDLDEPENDENCY>
+<DDLNAME>ZEXED_I_UP_PDCMP_H</DDLNAME>
+<OBJECTNAME>ZEXED_I_UP_PDCMP_H</OBJECTNAME>
+<STATE>N</STATE>
+<OBJECTTYPE>STOB</OBJECTTYPE>
+</DDLDEPENDENCY>
+</DDLDEPENDENCY>
+<TADIR>
+<TADIR>
+<PGMID>R3TR</PGMID>
+<OBJECT>DDLS</OBJECT>
+<OBJ_NAME>ZEXED_I_UP_PDCMP_H</OBJ_NAME>
+<KORRNUM></KORRNUM>
+<SRCSYSTEM>...</SRCSYSTEM>
+<AUTHOR>SAP_CUSTOMER</AUTHOR>
+<SRCDEP></SRCDEP>
+<DEVCLASS>ZEXED_RAP_UP_PURCHASE_ORDER</DEVCLASS>
+<GENFLAG></GENFLAG>
+<EDTFLAG></EDTFLAG>
+<CPROJECT> L</CPROJECT>
+<MASTERLANG>E</MASTERLANG>
+<VERSID></VERSID>
+<PAKNOCHECK></PAKNOCHECK>
+<OBJSTABLTY></OBJSTABLTY>
+<COMPONENT></COMPONENT>
+<CRELEASE></CRELEASE>
+<DELFLAG></DELFLAG>
+<TRANSLTTXT></TRANSLTTXT>
+<CREATED_ON>2026-07-01</CREATED_ON>
+<CHECK_DATE>2026-07-01</CHECK_DATE>
+<CHECK_CFG></CHECK_CFG>
+</TADIR>
+</TADIR>
+</asx:values>
+</asx:abap>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?><asx:abap xmlns:asx="http://www.sap.com/abapxml">
+<asx:values>
+<DDDDLSRC>
+<DDDDLSRC>
+<DDLNAME>ZEXED_I_UP_PDCMP_I</DDLNAME>
+<AS4LOCAL>N</AS4LOCAL>
+<AS4USER>SAP_CUSTOMER</AS4USER>
+<AS4DATE>0000-00-00</AS4DATE>
+<AS4TIME>00:00:00</AS4TIME>
+<SOURCE>@AbapCatalog.viewEnhancementCategory: [#NONE]
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'Upload PO - Itens (Intf.)'
+define view entity ZEXED_I_UP_PDCMP_I
+  as select from zexed_up_pdcmp_i
+
+  association [1..1] to ZEXED_I_UP_PDCMP              as _File                         on  $projection.FileUUID = _File.UUID
+
+  association [0..1] to I_ProductText                 as _MaterialText                 on  $projection.Material   = _MaterialText.Product
+                                                                                       and _MaterialText.Language = $session.system_language
+
+  association [0..1] to I_Plant                       as _Plant                        on  $projection.Plant = _Plant.Plant
+
+  association [0..1] to I_AcctAssgmtDistrIndicatorTxt as _AcctAssgmtDistrIndicatorText on  _AcctAssgmtDistrIndicatorText.Language     = $session.system_language
+                                                                                       and $projection.MultipleAcctAssgmtDistribution = _AcctAssgmtDistrIndicatorText.MultipleAcctAssgmtDistribution
+
+
+  association        to parent ZEXED_I_UP_PDCMP_H     as _Header                       on  $projection.ParentUUID = _Header.UUID
+
+  composition [0..*] of ZEXED_I_UP_PDCMP_A            as _AccAssignment
+{
+  key   uuid                                              as UUID,
+        parent_uuid                                       as ParentUUID,
+        file_uuid                                         as FileUUID,
+        purchase_order                                    as PurchaseOrder,
+        item                                              as Item,
+        concat_with_space('Item:',ltrim( item, '0' ),1)   as LabelItem,
+        material                                          as Material,
+        _MaterialText.ProductName                         as MaterialName,
+        plant                                             as Plant,
+        _Plant.PlantName                                  as PlantName,
+        document_currency                                 as DocumentCurrency,
+        purchase_order_quantity_unit                      as PurchaseOrderQuantityUnit,
+        net_price_amount                                  as NetPriceAmount,
+        order_quantity                                    as OrderQuantity,
+        purchase_requisition                              as PurchaseRequisition,
+        purchase_requisition_item                         as PurchaseRequisitionItem,
+        base_unit                                         as BaseUnit,
+        multiple_acct_assgmt_distribut                    as MultipleAcctAssgmtDistribution,
+        _AcctAssgmtDistrIndicatorText.DistributionKeyText as DistributionKeyText,
+        account_assignment_category                       as AccountAssignmentCategory,
+        tax_code                                          as TaxCode,
+        $session.system_language                          as Language,
+        local_created_by                                  as LocalCreatedBy,
+        local_created_at                                  as LocalCreatedAt,
+        local_last_changed_by                             as LocalLastChangedBy,
+        local_last_changed_at                             as LocalLastChangedAt,
+        last_changed_at                                   as LastChangedAt,
+        //Associations
+        _Header,
+        _File,
+        _AccAssignment
+}
+/*+[internal] {
+"BASEINFO":
+{
+"FROM":
+[
+"I_ACCTASSGMTDISTRINDICATORTXT",
+"I_PLANT",
+"I_PRODUCTTEXT",
+"ZEXED_UP_PDCMP_I"
+],
+"ASSOCIATED":
+[
+"ZEXED_I_UP_PDCMP",
+"ZEXED_I_UP_PDCMP_A",
+"ZEXED_I_UP_PDCMP_H"
+],
+"BASE":
+[],
+"ANNO_REF":
+[],
+"SCALAR_FUNCTION":
+[],
+"VERSION":0,
+"ANNOREF_EVALUATION_ERROR":""
+}
+}*/</SOURCE>
+<PARENTNAME></PARENTNAME>
+<ACTFLAG></ACTFLAG>
+<CHGFLAG></CHGFLAG>
+<SOURCE_TYPE>W</SOURCE_TYPE>
+<SOURCE_ORIGIN>0</SOURCE_ORIGIN>
+<ABAP_LANGUAGE_VERSION>5</ABAP_LANGUAGE_VERSION>
+</DDDDLSRC>
+</DDDDLSRC>
+<DDDDLSRC02BT>
+<DDDDLSRC02BT>
+<DDLNAME>ZEXED_I_UP_PDCMP_I</DDLNAME>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_I</STRUCOBJN>
+<DDLANGUAGE>E</DDLANGUAGE>
+<AS4LOCAL>N</AS4LOCAL>
+<DDTEXT>Upload PO - Itens (Intf.)</DDTEXT>
+</DDDDLSRC02BT>
+</DDDDLSRC02BT>
+<DDDDLSRCT>
+<DDDDLSRCT>
+<DDLNAME>ZEXED_I_UP_PDCMP_I</DDLNAME>
+<DDLANGUAGE>E</DDLANGUAGE>
+<AS4LOCAL>N</AS4LOCAL>
+<DDTEXT>Upload Pedido de Cimpra- Itens (Interface)</DDTEXT>
+</DDDDLSRCT>
+</DDDDLSRCT>
+<DDFIELDANNO>
+<DDFIELDANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_I</STRUCOBJN>
+<LFIELDNAME>MANDT</LFIELDNAME>
+<NAME>ABAPCATALOG</NAME>
+<POSITION>1</POSITION>
+<VALUE></VALUE>
+</DDFIELDANNO>
+<DDFIELDANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_I</STRUCOBJN>
+<LFIELDNAME>MANDT</LFIELDNAME>
+<NAME>ABAPCATALOG.INTERNAL.ISMANDT</NAME>
+<POSITION>2</POSITION>
+<VALUE></VALUE>
+</DDFIELDANNO>
+</DDFIELDANNO>
+<DDHEADANNO>
+<DDHEADANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_I</STRUCOBJN>
+<NAME>ABAPCATALOG</NAME>
+<POSITION>1</POSITION>
+<VALUE></VALUE>
+</DDHEADANNO>
+<DDHEADANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_I</STRUCOBJN>
+<NAME>ABAPCATALOG.VIEWENHANCEMENTCATEGORY$1$</NAME>
+<POSITION>2</POSITION>
+<VALUE>#NONE</VALUE>
+</DDHEADANNO>
+<DDHEADANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_I</STRUCOBJN>
+<NAME>ACCESSCONTROL</NAME>
+<POSITION>3</POSITION>
+<VALUE></VALUE>
+</DDHEADANNO>
+<DDHEADANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_I</STRUCOBJN>
+<NAME>ACCESSCONTROL.AUTHORIZATIONCHECK</NAME>
+<POSITION>4</POSITION>
+<VALUE>#NOT_REQUIRED</VALUE>
+</DDHEADANNO>
+<DDHEADANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_I</STRUCOBJN>
+<NAME>ENDUSERTEXT</NAME>
+<POSITION>5</POSITION>
+<VALUE></VALUE>
+</DDHEADANNO>
+<DDHEADANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_I</STRUCOBJN>
+<NAME>ENDUSERTEXT.LABEL</NAME>
+<POSITION>6</POSITION>
+<VALUE>'Upload PO - Itens (Intf.)'</VALUE>
+</DDHEADANNO>
+</DDHEADANNO>
+<DDLDEPENDENCY>
+<DDLDEPENDENCY>
+<DDLNAME>ZEXED_I_UP_PDCMP_I</DDLNAME>
+<OBJECTNAME>ZEXED_I_UP_PDCMP_I</OBJECTNAME>
+<STATE>N</STATE>
+<OBJECTTYPE>STOB</OBJECTTYPE>
+</DDLDEPENDENCY>
+</DDLDEPENDENCY>
+<TADIR>
+<TADIR>
+<PGMID>R3TR</PGMID>
+<OBJECT>DDLS</OBJECT>
+<OBJ_NAME>ZEXED_I_UP_PDCMP_I</OBJ_NAME>
+<KORRNUM></KORRNUM>
+<SRCSYSTEM>...</SRCSYSTEM>
+<AUTHOR>SAP_CUSTOMER</AUTHOR>
+<SRCDEP></SRCDEP>
+<DEVCLASS>ZEXED_RAP_UP_PURCHASE_ORDER</DEVCLASS>
+<GENFLAG></GENFLAG>
+<EDTFLAG></EDTFLAG>
+<CPROJECT> L</CPROJECT>
+<MASTERLANG>E</MASTERLANG>
+<VERSID></VERSID>
+<PAKNOCHECK></PAKNOCHECK>
+<OBJSTABLTY></OBJSTABLTY>
+<COMPONENT></COMPONENT>
+<CRELEASE></CRELEASE>
+<DELFLAG></DELFLAG>
+<TRANSLTTXT></TRANSLTTXT>
+<CREATED_ON>2026-07-01</CREATED_ON>
+<CHECK_DATE>2026-07-01</CHECK_DATE>
+<CHECK_CFG></CHECK_CFG>
+</TADIR>
+</TADIR>
+</asx:values>
+</asx:abap>

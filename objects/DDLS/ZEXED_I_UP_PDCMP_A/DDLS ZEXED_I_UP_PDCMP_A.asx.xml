@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?><asx:abap xmlns:asx="http://www.sap.com/abapxml">
+<asx:values>
+<DDDDLSRC>
+<DDDDLSRC>
+<DDLNAME>ZEXED_I_UP_PDCMP_A</DDLNAME>
+<AS4LOCAL>N</AS4LOCAL>
+<AS4USER>SAP_CUSTOMER</AS4USER>
+<AS4DATE>0000-00-00</AS4DATE>
+<AS4TIME>00:00:00</AS4TIME>
+<SOURCE>@AbapCatalog.viewEnhancementCategory: [#NONE]
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'Upload PO - Class. Contab. (Intf.)'
+@Metadata.ignorePropagatedAnnotations: false
+define view entity ZEXED_I_UP_PDCMP_A
+  as select from zexed_up_pdcmp_a
+
+  association        to parent ZEXED_I_UP_PDCMP_I as _Item on $projection.ParentUUID = _Item.UUID
+
+  association [1..1] to ZEXED_I_UP_PDCMP          as _File on $projection.FileUUID = _File.UUID
+{
+  key   uuid                                                                                   as UUID,
+        parent_uuid                                                                            as ParentUUID,
+        file_uuid                                                                              as FileUUID,
+        purchase_order                                                                         as PurchaseOrder,
+        item                                                                                   as Item,
+        account_assignment_number                                                              as AccountAssignmentNumber,
+        concat_with_space('Classificação Contábil:',ltrim( account_assignment_number, '0' ),1) as LabelAccountAssignment,
+        cost_center                                                                            as CostCenter,
+        proj_network                                                                           as ProjectNetwork,
+        network_activity                                                                       as NetworkActivity,
+        order_quantity_unit                                                                    as OrderQuantityUnit,
+        quantity                                                                               as Quantity,
+        document_currency                                                                      as DocumentCurrency,
+        purg_doc_net_amount                                                                    as PurgDocNetAmount,
+        mult_acct_assgmt_distr_percent                                                         as MultipleAcctAssgmtDistrPercent,
+        glaccount                                                                              as GLAccount,
+        local_created_by                                                                       as LocalCreatedBy,
+        local_created_at                                                                       as LocalCreatedAt,
+        local_last_changed_by                                                                  as LocalLastChangedBy,
+        local_last_changed_at                                                                  as LocalLastChangedAt,
+        last_changed_at                                                                        as LastChangedAt,
+        //Associations
+        _Item,
+        _File
+}
+/*+[internal] {
+"BASEINFO":
+{
+"FROM":
+[
+"ZEXED_UP_PDCMP_A"
+],
+"ASSOCIATED":
+[
+"ZEXED_I_UP_PDCMP",
+"ZEXED_I_UP_PDCMP_I"
+],
+"BASE":
+[],
+"ANNO_REF":
+[],
+"SCALAR_FUNCTION":
+[],
+"VERSION":0,
+"ANNOREF_EVALUATION_ERROR":""
+}
+}*/</SOURCE>
+<PARENTNAME></PARENTNAME>
+<ACTFLAG></ACTFLAG>
+<CHGFLAG></CHGFLAG>
+<SOURCE_TYPE>W</SOURCE_TYPE>
+<SOURCE_ORIGIN>0</SOURCE_ORIGIN>
+<ABAP_LANGUAGE_VERSION>5</ABAP_LANGUAGE_VERSION>
+</DDDDLSRC>
+</DDDDLSRC>
+<DDDDLSRC02BT>
+<DDDDLSRC02BT>
+<DDLNAME>ZEXED_I_UP_PDCMP_A</DDLNAME>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_A</STRUCOBJN>
+<DDLANGUAGE>E</DDLANGUAGE>
+<AS4LOCAL>N</AS4LOCAL>
+<DDTEXT>Upload PO - Class. Contab. (Intf.)</DDTEXT>
+</DDDDLSRC02BT>
+</DDDDLSRC02BT>
+<DDDDLSRCT>
+<DDDDLSRCT>
+<DDLNAME>ZEXED_I_UP_PDCMP_A</DDLNAME>
+<DDLANGUAGE>E</DDLANGUAGE>
+<AS4LOCAL>N</AS4LOCAL>
+<DDTEXT>Upload Pedido de Compra- Class. Contab. (Interface)</DDTEXT>
+</DDDDLSRCT>
+</DDDDLSRCT>
+<DDFIELDANNO>
+<DDFIELDANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_A</STRUCOBJN>
+<LFIELDNAME>MANDT</LFIELDNAME>
+<NAME>ABAPCATALOG</NAME>
+<POSITION>1</POSITION>
+<VALUE></VALUE>
+</DDFIELDANNO>
+<DDFIELDANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_A</STRUCOBJN>
+<LFIELDNAME>MANDT</LFIELDNAME>
+<NAME>ABAPCATALOG.INTERNAL.ISMANDT</NAME>
+<POSITION>2</POSITION>
+<VALUE></VALUE>
+</DDFIELDANNO>
+</DDFIELDANNO>
+<DDHEADANNO>
+<DDHEADANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_A</STRUCOBJN>
+<NAME>ABAPCATALOG</NAME>
+<POSITION>1</POSITION>
+<VALUE></VALUE>
+</DDHEADANNO>
+<DDHEADANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_A</STRUCOBJN>
+<NAME>ABAPCATALOG.VIEWENHANCEMENTCATEGORY$1$</NAME>
+<POSITION>2</POSITION>
+<VALUE>#NONE</VALUE>
+</DDHEADANNO>
+<DDHEADANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_A</STRUCOBJN>
+<NAME>ACCESSCONTROL</NAME>
+<POSITION>3</POSITION>
+<VALUE></VALUE>
+</DDHEADANNO>
+<DDHEADANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_A</STRUCOBJN>
+<NAME>ACCESSCONTROL.AUTHORIZATIONCHECK</NAME>
+<POSITION>4</POSITION>
+<VALUE>#NOT_REQUIRED</VALUE>
+</DDHEADANNO>
+<DDHEADANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_A</STRUCOBJN>
+<NAME>ENDUSERTEXT</NAME>
+<POSITION>5</POSITION>
+<VALUE></VALUE>
+</DDHEADANNO>
+<DDHEADANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_A</STRUCOBJN>
+<NAME>ENDUSERTEXT.LABEL</NAME>
+<POSITION>6</POSITION>
+<VALUE>'Upload PO - Class. Contab. (Intf.)'</VALUE>
+</DDHEADANNO>
+<DDHEADANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_A</STRUCOBJN>
+<NAME>METADATA</NAME>
+<POSITION>7</POSITION>
+<VALUE></VALUE>
+</DDHEADANNO>
+<DDHEADANNO>
+<STRUCOBJN>ZEXED_I_UP_PDCMP_A</STRUCOBJN>
+<NAME>METADATA.IGNOREPROPAGATEDANNOTATIONS</NAME>
+<POSITION>8</POSITION>
+<VALUE>false</VALUE>
+</DDHEADANNO>
+</DDHEADANNO>
+<DDLDEPENDENCY>
+<DDLDEPENDENCY>
+<DDLNAME>ZEXED_I_UP_PDCMP_A</DDLNAME>
+<OBJECTNAME>ZEXED_I_UP_PDCMP_A</OBJECTNAME>
+<STATE>N</STATE>
+<OBJECTTYPE>STOB</OBJECTTYPE>
+</DDLDEPENDENCY>
+</DDLDEPENDENCY>
+<TADIR>
+<TADIR>
+<PGMID>R3TR</PGMID>
+<OBJECT>DDLS</OBJECT>
+<OBJ_NAME>ZEXED_I_UP_PDCMP_A</OBJ_NAME>
+<KORRNUM></KORRNUM>
+<SRCSYSTEM>...</SRCSYSTEM>
+<AUTHOR>SAP_CUSTOMER</AUTHOR>
+<SRCDEP></SRCDEP>
+<DEVCLASS>ZEXED_RAP_UP_PURCHASE_ORDER</DEVCLASS>
+<GENFLAG></GENFLAG>
+<EDTFLAG></EDTFLAG>
+<CPROJECT> L</CPROJECT>
+<MASTERLANG>E</MASTERLANG>
+<VERSID></VERSID>
+<PAKNOCHECK></PAKNOCHECK>
+<OBJSTABLTY></OBJSTABLTY>
+<COMPONENT></COMPONENT>
+<CRELEASE></CRELEASE>
+<DELFLAG></DELFLAG>
+<TRANSLTTXT></TRANSLTTXT>
+<CREATED_ON>2026-07-01</CREATED_ON>
+<CHECK_DATE>2026-07-01</CHECK_DATE>
+<CHECK_CFG></CHECK_CFG>
+</TADIR>
+</TADIR>
+</asx:values>
+</asx:abap>

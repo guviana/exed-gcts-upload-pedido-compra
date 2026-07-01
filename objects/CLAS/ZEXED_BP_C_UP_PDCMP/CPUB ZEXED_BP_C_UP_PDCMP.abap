@@ -1,0 +1,1 @@
+CLASS zexed_bp_c_up_pdcmp DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zexed_c_up_pdcmp.
