@@ -9,10 +9,10 @@
     "AS4USER":"SAP_CUSTOMER",
     "AS4DATE":"0000-00-00",
     "AS4TIME":"00:00:00",
-    "SOURCE":"@AccessControl.authorizationCheck: #NOT_REQUIRED\r\n@EndUserText.label: 'Consumption View for zexed_I_UP_PDCMP_A'\r\n@Metadata.ignorePropagatedAnnotations: false\r\n@VDM.viewType: #CONSUMPTION\r\n@Metadata.allowExtensions: true\r\ndefine view entity ZEXED_C_UP_PDCMP_A\r\n  as projection on ZEXED_I_UP_PDCMP_A\r\n{\r\n  key UUID,\r\n      ParentUUID,\r\n      FileUUID,\r\n      PurchaseOrder,\r\n      Item,\r\n      AccountAssignmentNumber,\r\n      LabelAccountAssignment,\r\n      CostCenter,\r\n      ProjectNetwork,\r\n      NetworkActivity,\r\n      OrderQuantityUnit,\r\n      Quantity,\r\n      DocumentCurrency,\r\n      PurgDocNetAmount,\r\n      MultipleAcctAssgmtDistrPercent,\r\n      GLAccount,\r\n      WBSElement,\r\n      MasterFixedAsset,\r\n      LocalCreatedBy,\r\n      LocalCreatedAt,\r\n      LocalLastChangedBy,\r\n      LocalLastChangedAt,\r\n      LastChangedAt,\r\n      /* Associations */\r\n      _File : redirected to ZEXED_C_UP_PDCMP,\r\n      _Item : redirected to parent ZEXED_C_UP_PDCMP_I\r\n}\r\n/*+[internal] {\n\"BASEINFO\":\n{\n\"FROM\":\n[\n\"ZEXED_I_UP_PDCMP_A\"\n],\n\"ASSOCIATED\":\n[\n\"ZEXED_C_UP_PDCMP\",\n\"ZEXED_C_UP_PDCMP_I\",\n\"ZEXED_I_UP_PDCMP\",\n\"ZEXED_I_UP_PDCMP_I\"\n],\n\"BASE\":\n[\n\"ZEXED_I_UP_PDCMP_A\"\n],\n\"ANNO_REF\":\n[],\n\"SCALAR_FUNCTION\":\n[],\n\"VERSION\":0,\n\"ANNOREF_EVALUATION_ERROR\":\"\"\n}\n}*/",
+    "SOURCE":"@AccessControl.authorizationCheck: #NOT_REQUIRED\r\n@EndUserText.label: 'Consumption View for ZEXED_I_UP_PDCMP_A'\r\n@Metadata.ignorePropagatedAnnotations: false\r\n@VDM.viewType: #CONSUMPTION\r\n@Metadata.allowExtensions: true\r\ndefine view entity ZEXED_C_UP_PDCMP_A\r\n  as projection on ZEXED_I_UP_PDCMP_A\r\n{\r\n  key UUID,\r\n      ParentUUID,\r\n      FileUUID,\r\n      PurchaseOrder,\r\n      Item,\r\n      AccountAssignmentNumber,\r\n      LabelAccountAssignment,\r\n      CostCenter,\r\n      ProjectNetwork,\r\n      NetworkActivity,\r\n      OrderQuantityUnit,\r\n      Quantity,\r\n      DocumentCurrency,\r\n      PurgDocNetAmount,\r\n      MultipleAcctAssgmtDistrPercent,\r\n      GLAccount,\r\n      WBSElement,\r\n      MasterFixedAsset,\r\n      LocalCreatedBy,\r\n      LocalCreatedAt,\r\n      LocalLastChangedBy,\r\n      LocalLastChangedAt,\r\n      LastChangedAt,\r\n      /* Associations */\r\n      _File : redirected to ZEXED_C_UP_PDCMP,\r\n      _Item : redirected to parent ZEXED_C_UP_PDCMP_I\r\n}\r\n/*+[internal] {\n\"BASEINFO\":\n{\n\"FROM\":\n[\n\"ZEXED_I_UP_PDCMP_A\"\n],\n\"ASSOCIATED\":\n[\n\"ZEXED_C_UP_PDCMP\",\n\"ZEXED_C_UP_PDCMP_I\",\n\"ZEXED_I_UP_PDCMP\",\n\"ZEXED_I_UP_PDCMP_I\"\n],\n\"BASE\":\n[\n\"ZEXED_I_UP_PDCMP_A\"\n],\n\"ANNO_REF\":\n[],\n\"SCALAR_FUNCTION\":\n[],\n\"VERSION\":0,\n\"ANNOREF_EVALUATION_ERROR\":\"\"\n}\n}*/",
     "PARENTNAME":"",
     "ACTFLAG":"",
-    "CHGFLAG":"54D",
+    "CHGFLAG":"",
     "SOURCE_TYPE":"P",
     "SOURCE_ORIGIN":"0",
     "ABAP_LANGUAGE_VERSION":"5"
@@ -28,7 +28,7 @@
     "STRUCOBJN":"ZEXED_C_UP_PDCMP_A",
     "DDLANGUAGE":"E",
     "AS4LOCAL":"N",
-    "DDTEXT":"Consumption View for zexed_I_UP_PDCMP_A"
+    "DDTEXT":"Consumption View for ZEXED_I_UP_PDCMP_A"
    }
   ]
  },
@@ -96,7 +96,7 @@
     "STRUCOBJN":"ZEXED_C_UP_PDCMP_A",
     "NAME":"ENDUSERTEXT.LABEL",
     "POSITION":4,
-    "VALUE":"'Consumption View for zexed_I_UP_PDCMP_A'"
+    "VALUE":"'Consumption View for ZEXED_I_UP_PDCMP_A'"
    },
    {
     "STRUCOBJN":"ZEXED_C_UP_PDCMP_A",

@@ -7,9 +7,9 @@
     "SRVDNAME":"ZEXED_UI_UP_PDCMP_O4",
     "VERSION":"A",
     "CHANGED_BY":"SAP_CUSTOMER",
-    "CHANGED_ON":"2026-07-01",
-    "CHANGED_AT":"14:12:26",
-    "DT_UUID":"FA163E8E07B21FD19DAADC69ED0B5A9E",
+    "CHANGED_ON":"2026-08-12",
+    "CHANGED_AT":"23:31:28",
+    "DT_UUID":"000D3A8B8E841FD1A5D4BE2CDBFE5725",
     "SOURCE_ORIGIN":"0",
     "SRVD_SOURCE_TYPE":"S",
     "ABAP_LANGUAGE_VERSION":"5"
@@ -35,7 +35,7 @@
    {
     "SRVDNAME":"ZEXED_UI_UP_PDCMP_O4",
     "VERSION":"A",
-    "SOURCE":"@EndUserText: {\r\n  label: 'Service Definition for zexed_C_UP_PDCMP'\r\n}\r\n@ObjectModel: {\r\n  leadingEntity: {\r\n    name: 'ZEXED_C_UP_PDCMP'\r\n  }\r\n}\r\ndefine service ZEXED_UI_UP_PDCMP_O4\r\n  provider contracts odata_v4_ui {\r\n  expose ZEXED_C_UP_PDCMP   as File;\r\n  expose ZEXED_C_UP_PDCMP_H as PurchaseOrder;\r\n  expose ZEXED_C_UP_PDCMP_I as PurchaseOrderItem;\r\n  expose ZEXED_C_UP_PDCMP_A as PurchaseOrderItemAccAss;\r\n}"
+    "SOURCE":"@EndUserText: {\r\n  label: 'Service Definition for ZEXED_C_UP_PDCMP'\r\n}\r\n@ObjectModel: {\r\n  leadingEntity: {\r\n    name: 'ZEXED_C_UP_PDCMP'\r\n  }\r\n}\r\ndefine service ZEXED_UI_UP_PDCMP_O4\r\n  provider contracts odata_v4_ui {\r\n  expose ZEXED_C_UP_PDCMP   as File;\r\n  expose ZEXED_C_UP_PDCMP_H as PurchaseOrder;\r\n  expose ZEXED_C_UP_PDCMP_I as PurchaseOrderItem;\r\n  expose ZEXED_C_UP_PDCMP_A as PurchaseOrderItemAccAss;\r\n}"
    }
   ]
  },
@@ -46,7 +46,7 @@
    {
     "SRVDNAME":"ZEXED_UI_UP_PDCMP_O4",
     "NAME":"ENDUSERTEXT.LABEL",
-    "VALUE":"'Service Definition for zexed_C_UP_PDCMP'"
+    "VALUE":"'Service Definition for ZEXED_C_UP_PDCMP'"
    },
    {
     "SRVDNAME":"ZEXED_UI_UP_PDCMP_O4",
@@ -63,7 +63,7 @@
     "SRVDNAME":"ZEXED_UI_UP_PDCMP_O4",
     "LANGUAGE":"E",
     "NAME":"ENDUSERTEXT.LABEL",
-    "TEXT":"Service Definition for zexed_C_UP_PDCMP"
+    "TEXT":"Service Definition for ZEXED_C_UP_PDCMP"
    }
   ]
  },
@@ -128,8 +128,8 @@
     "SERVICE":"ZEXED_UI_UP_PDCMP_O4",
     "SERVICE_RAW":"ZEXED_UI_UP_PDCMP_O4",
     "SOURCE_TYPE":"S",
-    "DT_UUID":"FA163E8E07B21FD19DAADC69ED0B5A9E",
-    "RT_HASH":"5F9BD5C0ACC6E8894346774088FE6B637C9C6956",
+    "DT_UUID":"000D3A8B8E841FD1A5D4BE2CDBFE5725",
+    "RT_HASH":"67DCF85CA2B64A2CF5399987BA13C1D44A4AE5DD",
     "GEN_VERSION":"0"
    }
   ]
