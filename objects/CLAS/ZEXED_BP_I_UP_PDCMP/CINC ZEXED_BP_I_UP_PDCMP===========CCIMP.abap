@@ -67,6 +67,8 @@ CLASS lhc_purchaseorder IMPLEMENTATION.
     DATA lt_update TYPE TABLE FOR UPDATE zexed_i_up_pdcmp_h.
     DATA lt_keys LIKE keys.
     DATA lt_deep TYPE zexed_cl_pedcompra=>tt_cria_pedido_deep.
+    DATA lv_ebeln TYPE ebeln.
+    DATA lv_ebelp TYPE ebelp.
 
     LOOP AT keys ASSIGNING FIELD-SYMBOL(<fs_key>).
       IF <fs_key>-%is_draft = if_abap_behv=>mk-off.
@@ -101,10 +103,71 @@ CLASS lhc_purchaseorder IMPLEMENTATION.
           INTO TABLE @DATA(lt_po_acc_ass).
         ENDIF.
 
-        lt_deep = CORRESPONDING #( lt_po ).
+*        lt_deep = CORRESPONDING #( lt_po ).
+*
+*        LOOP AT lt_deep ASSIGNING FIELD-SYMBOL(<fs_deep>).
 
-        LOOP AT lt_deep ASSIGNING FIELD-SYMBOL(<fs_deep>).
+        LOOP AT lt_po ASSIGNING FIELD-SYMBOL(<fs_po>).
+          APPEND CORRESPONDING #( <fs_po> ) TO lt_deep ASSIGNING FIELD-SYMBOL(<fs_deep>).
           LOOP AT lt_po_items ASSIGNING FIELD-SYMBOL(<fs_item>) WHERE ParentUUID = <fs_deep>-uuid.
+            IF <fs_item>-PurchaseRequisition IS NOT INITIAL.
+              lv_ebeln = |{ <fs_item>-PurchaseRequisition ALPHA = IN }|.
+              lv_ebelp = <fs_item>-PurchaseRequisitionItem.
+
+              SELECT SINGLE PurchaseRequisition, PurchaseRequisitionItem, PurReqnReleaseStatus
+              FROM i_purchaserequisitionitemapi01
+              WHERE PurchaseRequisition    = @lv_ebeln
+                AND PurchaseRequisitionItem = @lv_ebelp
+                INTO @DATA(ls_pur_req).
+
+              IF sy-subrc <> 0.
+                APPEND VALUE #(
+                  %tky = <fs_po>-%tky
+                  %msg = new_message_with_text(
+                           severity = if_abap_behv_message=>severity-error
+                            text     = |Req. Compra { <fs_item>-PurchaseRequisition } Item { <fs_item>-PurchaseRequisitionItem } não encontrado!| )
+                ) TO reported-purchaseorder.
+
+                " Atualizar o status do arquivo (após toda validação)
+                APPEND VALUE #( %tky                        = <fs_po>-%tky
+                                %data-Status                = zexed_bp_i_up_pdcmp=>c_msg_status_error
+                                %data-CriticalityStatus     = 1
+                                %control-Status             = if_abap_behv=>mk-on
+                                %control-CriticalityStatus  = if_abap_behv=>mk-on )
+                TO lt_update.
+
+
+            MODIFY ENTITIES OF zexed_i_up_pdcmp IN LOCAL MODE
+              ENTITY PurchaseOrder
+              UPDATE FIELDS ( Status CriticalityStatus )
+              WITH lt_update.
+
+                RETURN.
+              ELSEIF ls_pur_req-PurReqnReleaseStatus <> '05'.
+                APPEND VALUE #(
+                  %tky = <fs_po>-%tky
+                  %msg = new_message_with_text(
+                           severity = if_abap_behv_message=>severity-error
+                            text     = |Req. Compra { <fs_item>-PurchaseRequisition } Item { <fs_item>-PurchaseRequisitionItem } bloqueado!| )
+                ) TO reported-purchaseorder.
+
+                " Atualizar o status do arquivo (após toda validação)
+                APPEND VALUE #( %tky                        = <fs_po>-%tky
+                                %data-Status                = zexed_bp_i_up_pdcmp=>c_msg_status_error
+                                %data-CriticalityStatus     = 1
+                                %control-Status             = if_abap_behv=>mk-on
+                                %control-CriticalityStatus  = if_abap_behv=>mk-on )
+                TO lt_update.
+
+
+            MODIFY ENTITIES OF zexed_i_up_pdcmp IN LOCAL MODE
+              ENTITY PurchaseOrder
+              UPDATE FIELDS ( Status CriticalityStatus )
+              WITH lt_update.
+
+                RETURN.
+              ENDIF.
+            ENDIF.
             APPEND CORRESPONDING #( <fs_item> ) TO <fs_deep>-purchase_order_item ASSIGNING FIELD-SYMBOL(<fs_deep_item>).
             LOOP AT lt_po_acc_ass ASSIGNING FIELD-SYMBOL(<fs_acc_ass>) WHERE ParentUUID = <fs_item>-uuid.
               APPEND CORRESPONDING #( <fs_acc_ass> ) TO <fs_deep_item>-to_account_assignment.
@@ -120,7 +183,8 @@ CLASS lhc_purchaseorder IMPLEMENTATION.
                     et_return = DATA(lt_return)
             ).
 
-            LOOP AT lt_po ASSIGNING FIELD-SYMBOL(<fs_po>).
+*            LOOP AT lt_po ASSIGNING FIELD-SYMBOL(<fs_po>).
+            LOOP AT lt_po ASSIGNING <fs_po>.
               DATA(lv_index) = sy-tabix.
               LOOP AT lt_return ASSIGNING FIELD-SYMBOL(<fs_return>) WHERE row_index = lv_index.
                 APPEND VALUE #(
@@ -325,6 +389,8 @@ CLASS lhc_zexed_i_up_pdcmp IMPLEMENTATION.
     DATA lt_update TYPE TABLE FOR UPDATE zexed_i_up_pdcmp.
     DATA lt_excel  TYPE STANDARD TABLE OF zexed_cl_upload_pedcompra=>ty_excel.
     DATA lv_status TYPE string.
+    DATA lv_ebeln TYPE ebeln.
+    DATA lv_ebelp TYPE ebelp.
 
     READ ENTITIES OF zexed_i_up_pdcmp IN LOCAL MODE
          ENTITY File
@@ -381,10 +447,41 @@ CLASS lhc_zexed_i_up_pdcmp IMPLEMENTATION.
 
       LOOP AT lt_excel ASSIGNING FIELD-SYMBOL(<fs_excel_h>).
         LOOP AT <fs_excel_h>-to_items ASSIGNING FIELD-SYMBOL(<fs_excel_i>).
+*          IF <fs_excel_i>-purchase_requisition IS NOT INITIAL.
+*            lv_ebeln = |{ <fs_excel_i>-purchase_requisition ALPHA = IN }|.
+*            lv_ebelp = <fs_excel_i>-purchase_requisition_item.
+*
+*            SELECT SINGLE PurchaseRequisition, PurchaseRequisitionItem, PurReqnReleaseStatus
+*            FROM i_purchaserequisitionitemapi01
+*            WHERE PurchaseRequisition    = @lv_ebeln
+*              AND PurchaseRequisitionItem = @lv_ebelp
+*              INTO @DATA(ls_pur_req).
+*
+*            IF sy-subrc <> 0.
+*              lv_status = zexed_bp_i_up_pdcmp=>c_msg_error.
+*              lv_is_valid = abap_false.
+*
+*              APPEND VALUE #( %tky = ls_file-%tky
+*                              %msg = new_message_with_text( severity = if_abap_behv_message=>severity-error
+*                                                            text     = |Req. Compra { <fs_excel_i>-purchase_requisition } Item { <fs_excel_i>-purchase_requisition_item } não encontrado!| ) )
+*              TO reported-file.
+*              CONTINUE.
+*            ELSEIF ls_pur_req-PurReqnReleaseStatus <> '05'.
+*              lv_status = zexed_bp_i_up_pdcmp=>c_msg_error.
+*              lv_is_valid = abap_false.
+*
+*              APPEND VALUE #( %tky = ls_file-%tky
+*                              %msg = new_message_with_text( severity = if_abap_behv_message=>severity-error
+*                                                            text     = |Req. Compra { <fs_excel_i>-purchase_requisition } Item { <fs_excel_i>-purchase_requisition_item } bloqueada!| ) )
+*              TO reported-file.
+*              CONTINUE.
+*            ENDIF.
+*          ENDIF.
+
           LOOP AT <fs_excel_i>-to_account_assignment ASSIGNING FIELD-SYMBOL(<fs_excel_acc_ass>).
             DATA(lv_index_acc_ass) = sy-tabix.
             IF <fs_excel_i>-mult_acct_ass_dist = '' AND ( <fs_excel_acc_ass>-purg_doc_net_amount IS NOT INITIAL
-                                                             OR <fs_excel_acc_ass>-quantity IS NOT INITIAL
+*                                                             OR <fs_excel_acc_ass>-quantity IS NOT INITIAL
                                                              OR <fs_excel_acc_ass>-mult_acct_assgmt_distr_percent IS NOT INITIAL
                                                             ).
               lv_status = zexed_bp_i_up_pdcmp=>c_msg_error.
@@ -495,10 +592,20 @@ CLASS lhc_zexed_i_up_pdcmp IMPLEMENTATION.
 
           LOOP AT lt_excel ASSIGNING FIELD-SYMBOL(<fs_excel_h>).
             LOOP AT <fs_excel_h>-to_items ASSIGNING FIELD-SYMBOL(<fs_excel_i>).
+*              IF <fs_excel_i>-PurReqnReleaseStatus <> '05'.
+*                  lv_is_valid = abap_false.
+*
+*                  APPEND VALUE #( %tky = ls_file-%tky
+*                                  %msg = new_message_with_text( severity = if_abap_behv_message=>severity-error
+*                                                                text     = |Req. Compra { <fs_excel_i>-purchase_requisition } Item { <fs_excel_i>-purchase_requisition_item } bloqueada!| ) )
+*                  TO reported-file.
+*                  CONTINUE.
+*              ENDIF.
+
               LOOP AT <fs_excel_i>-to_account_assignment ASSIGNING FIELD-SYMBOL(<fs_excel_acc_ass>).
                 DATA(lv_index_acc_ass) = sy-tabix.
                 IF <fs_excel_i>-mult_acct_ass_dist = '' AND ( <fs_excel_acc_ass>-purg_doc_net_amount IS NOT INITIAL
-                                                                 OR <fs_excel_acc_ass>-quantity IS NOT INITIAL
+*                                                                 OR <fs_excel_acc_ass>-quantity IS NOT INITIAL
                                                                  OR <fs_excel_acc_ass>-mult_acct_assgmt_distr_percent IS NOT INITIAL
                                                                 ).
                   lv_is_valid = abap_false.
@@ -558,6 +665,10 @@ CLASS lhc_zexed_i_up_pdcmp IMPLEMENTATION.
                                             PurchaseGroup        = <fs_excel>-purchase_grp
                                             Supplier             = <fs_excel>-supplier
                                             PaymentTerms         = <fs_excel>-payment_terms
+                                            "***CUSTOM FIELDS***
+                                            Yy1PrazoHeaderPdh       = <fs_excel>-yy_1_prazo_header_pdh
+                                            Yy1DepartamentoHeadePd  = <fs_excel>-yy_1_departamento_heade_pd
+                                            Yy1RirPdh               = <fs_excel>-yy_1_rir_pdh
                                             Status               = zexed_bp_i_up_pdcmp=>c_msg_status_not_published
                                             CriticalityStatus    = 2
                                           )
@@ -572,6 +683,10 @@ CLASS lhc_zexed_i_up_pdcmp IMPLEMENTATION.
                                             PurchaseGroup        = if_abap_behv=>mk-on
                                             Supplier             = if_abap_behv=>mk-on
                                             PaymentTerms         = if_abap_behv=>mk-on
+                                            "***CUSTOM FIELDS***
+                                            Yy1PrazoHeaderPdh       = if_abap_behv=>mk-on
+                                            Yy1DepartamentoHeadePd  = if_abap_behv=>mk-on
+                                            Yy1RirPdh               = if_abap_behv=>mk-on
                                             Status               = if_abap_behv=>mk-on
                                             CriticalityStatus    = if_abap_behv=>mk-on
                                           )
@@ -684,6 +799,10 @@ CLASS lhc_zexed_i_up_pdcmp IMPLEMENTATION.
                                               MultipleAcctAssgmtDistribution    = <fs_excel_item>-mult_acct_ass_dist
                                               AccountAssignmentCategory         = <fs_excel_item>-account_assignment_category
                                               TaxCode                           = <fs_excel_item>-tax_code
+                                              PurchaseContract                  = <fs_excel_item>-purchase_contract
+                                              PurchaseContractItem              = <fs_excel_item>-purchase_contract_item
+                                              GoodsReceiptIsExpected            = <fs_excel_item>-goods_receipt_is_expected
+                                              InvoiceIsGoodsReceiptBased        = <fs_excel_item>-invoice_is_goods_receipt_b
                                             )
                                           %control = VALUE #(
                                               uuid                            = if_abap_behv=>mk-on
@@ -703,6 +822,10 @@ CLASS lhc_zexed_i_up_pdcmp IMPLEMENTATION.
                                               MultipleAcctAssgmtDistribution  = if_abap_behv=>mk-on
                                               AccountAssignmentCategory       = if_abap_behv=>mk-on
                                               TaxCode                         = if_abap_behv=>mk-on
+                                              PurchaseContract                = if_abap_behv=>mk-on
+                                              PurchaseContractItem            = if_abap_behv=>mk-on
+                                              GoodsReceiptIsExpected          = if_abap_behv=>mk-on
+                                              InvoiceIsGoodsReceiptBased      = if_abap_behv=>mk-on
                                             )
                                         ) ) ) TO lt_po_item_create.
 
@@ -726,7 +849,8 @@ CLASS lhc_zexed_i_up_pdcmp IMPLEMENTATION.
                                                   Item                              = <fs_excel_accass>-item
                                                   AccountAssignmentNumber           = lv_index_accass
                                                   CostCenter                        = <fs_excel_accass>-cost_center
-                                                  ProjectNetwork                    = <fs_excel_accass>-project_network
+*                                                  ProjectNetwork                    = <fs_excel_accass>-project_network
+                                                  WBSElement                        = <fs_excel_accass>-wbselement_external_id
                                                   NetworkActivity                   = <fs_excel_accass>-network_activity
                                                   OrderQuantityUnit                 = <fs_excel_accass>-order_quantity_unit
                                                   Quantity                          = <fs_excel_accass>-quantity
@@ -734,6 +858,7 @@ CLASS lhc_zexed_i_up_pdcmp IMPLEMENTATION.
                                                   PurgDocNetAmount                  = <fs_excel_accass>-purg_doc_net_amount
                                                   MultipleAcctAssgmtDistrPercent    = <fs_excel_accass>-mult_acct_assgmt_distr_percent
                                                   GLAccount                         = <fs_excel_accass>-glaccount
+                                                  MasterFixedAsset                  = <fs_excel_accass>-master_fixed_asset
                                                 )
                                               %control = VALUE #(
                                                   uuid                              = if_abap_behv=>mk-on
@@ -743,14 +868,16 @@ CLASS lhc_zexed_i_up_pdcmp IMPLEMENTATION.
                                                   Item                              = if_abap_behv=>mk-on
                                                   AccountAssignmentNumber           = if_abap_behv=>mk-on
                                                   CostCenter                        = if_abap_behv=>mk-on
-                                                  ProjectNetwork                    = if_abap_behv=>mk-on
+*                                                  ProjectNetwork                    = if_abap_behv=>mk-on
                                                   NetworkActivity                   = if_abap_behv=>mk-on
+                                                  WBSElement                        = if_abap_behv=>mk-on
                                                   OrderQuantityUnit                 = if_abap_behv=>mk-on
                                                   Quantity                          = if_abap_behv=>mk-on
                                                   DocumentCurrency                  = if_abap_behv=>mk-on
                                                   PurgDocNetAmount                  = if_abap_behv=>mk-on
                                                   MultipleAcctAssgmtDistrPercent    = if_abap_behv=>mk-on
                                                   GLAccount                         = if_abap_behv=>mk-on
+                                                  MasterFixedAsset                  = if_abap_behv=>mk-on
                                                 )
 *                                            ) ) ) TO ls_po_acc_ass_create-to_account_assignment.
 

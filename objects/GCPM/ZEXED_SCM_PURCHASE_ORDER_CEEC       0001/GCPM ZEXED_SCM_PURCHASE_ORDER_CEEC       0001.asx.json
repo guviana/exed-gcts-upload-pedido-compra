@@ -1,0 +1,50 @@
+[
+ {
+  "table":"/IWBEP/I_CP_MOD",
+  "data":
+  [
+   {
+    "PROXY_MODEL_ID":"ZEXED_SCM_PURCHASE_ORDER_CEEC",
+    "VERSION":1,
+    "MPC_NAME":"ZEXED_SCM_PURCHASE_ORDER_CEEC",
+    "DESCRIPTION":"Custom Purchase Order (custom fields)",
+    "CREATED_BY":"SAP_CUSTOMER",
+    "CREATED_AT":"+020260714130946",
+    "CHANGED_BY":"SAP_CUSTOMER",
+    "CHANGED_AT":"+020260714130946",
+    "ABAP_LANGUAGE_VERSION":"5",
+    "KIND":"OData_V4"
+   }
+  ]
+ },
+ {
+  "table":"TADIR",
+  "data":
+  [
+   {
+    "PGMID":"R3TR",
+    "OBJECT":"GCPM",
+    "OBJ_NAME":"ZEXED_SCM_PURCHASE_ORDER_CEEC       0001",
+    "KORRNUM":"",
+    "SRCSYSTEM":"...",
+    "AUTHOR":"SAP_CUSTOMER",
+    "SRCDEP":"",
+    "DEVCLASS":"ZEXED_API_PURCHASE_ORDER",
+    "GENFLAG":"",
+    "EDTFLAG":"",
+    "CPROJECT":" L",
+    "MASTERLANG":"P",
+    "VERSID":"",
+    "PAKNOCHECK":"",
+    "OBJSTABLTY":"",
+    "COMPONENT":"",
+    "CRELEASE":"",
+    "DELFLAG":"",
+    "TRANSLTTXT":"",
+    "CREATED_ON":"2026-07-14",
+    "CHECK_DATE":"2026-07-14",
+    "CHECK_CFG":""
+   }
+  ]
+ }
+]

@@ -85,23 +85,27 @@ etag master LastChangedAt
 
   mapping for zexed_up_pdcmp_h
     {
-      UUID                 = uuid;
-      ParentUUID           = parent_uuid;
-      PurchaseOrder        = purchase_order;
-      Status               = status;
-      CriticalityStatus    = criticalitystatus;
-      PurchaseOrderType2   = purchase_order_type;
-      PurchaseOrderDate    = purchase_order_date;
-      CompanyCode          = company_code;
-      PurchaseOrganization = purchase_org;
-      PurchaseGroup        = purchase_grp;
-      Supplier             = supplier;
-      PaymentTerms         = payment_terms;
-      LocalCreatedBy       = local_created_by;
-      LocalCreatedAt       = local_created_at;
-      LocalLastChangedBy   = local_last_changed_by;
-      LocalLastChangedAt   = local_last_changed_at;
-      LastChangedAt        = last_changed_at;
+      UUID                   = uuid;
+      ParentUUID             = parent_uuid;
+      PurchaseOrder          = purchase_order;
+      Status                 = status;
+      CriticalityStatus      = criticalitystatus;
+      PurchaseOrderType2     = purchase_order_type;
+      PurchaseOrderDate      = purchase_order_date;
+      CompanyCode            = company_code;
+      PurchaseOrganization   = purchase_org;
+      PurchaseGroup          = purchase_grp;
+      Supplier               = supplier;
+      PaymentTerms           = payment_terms;
+      //***CUSTOM FIELDS***
+      Yy1PrazoHeaderPdh      = yy_1_prazo_header_pdh;
+      Yy1DepartamentoHeadePd = yy_1_departamento_heade_pd;
+      Yy1RirPdh              = yy_1_rir_pdh;
+      LocalCreatedBy         = local_created_by;
+      LocalCreatedAt         = local_created_at;
+      LocalLastChangedBy     = local_last_changed_by;
+      LocalLastChangedAt     = local_last_changed_at;
+      LastChangedAt          = last_changed_at;
     }
 }
 
@@ -143,6 +147,10 @@ etag master LastChangedAt
       MultipleAcctAssgmtDistribution = multiple_acct_assgmt_distribut;
       AccountAssignmentCategory      = account_assignment_category;
       TaxCode                        = tax_code;
+      PurchaseContract               = purchase_contract;
+      PurchaseContractItem           = purchase_contract_item;
+      GoodsReceiptIsExpected         = goods_receipt_is_expected;
+      InvoiceIsGoodsReceiptBased     = invoice_is_goods_receipt_b;
       LocalCreatedBy                 = local_created_by;
       LocalCreatedAt                 = local_created_at;
       LocalLastChangedBy             = local_last_changed_by;
@@ -186,6 +194,8 @@ etag master LastChangedAt
       PurgDocNetAmount               = purg_doc_net_amount;
       MultipleAcctAssgmtDistrPercent = mult_acct_assgmt_distr_percent;
       GLAccount                      = glaccount;
+      WBSElement                     = wbs_element;
+      MasterFixedAsset               = master_fixed_asset;
       LocalCreatedBy                 = local_created_by;
       LocalCreatedAt                 = local_created_at;
       LocalLastChangedBy             = local_last_changed_by;
