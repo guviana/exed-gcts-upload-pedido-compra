@@ -1,0 +1,12 @@
+{
+  "name": "guviana-exed-gcts-upload-pedido-compra",
+  "version": "1.0.0",
+  "description": "exed-gcts-upload-pedido-compra",
+  "repositoryLayout": {
+    "format": "json",
+    "formatVersion": "6",
+    "keepClient": "false",
+    "metaInformation": ".gctsmetadata/",
+    "tableContent": "true"
+  }
+}
