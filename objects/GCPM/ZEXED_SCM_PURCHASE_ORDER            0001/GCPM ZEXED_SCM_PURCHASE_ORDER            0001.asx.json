@@ -1,0 +1,50 @@
+[
+ {
+  "table":"/IWBEP/I_CP_MOD",
+  "data":
+  [
+   {
+    "PROXY_MODEL_ID":"ZEXED_SCM_PURCHASE_ORDER",
+    "VERSION":1,
+    "MPC_NAME":"ZEXED_SCM_PURCHASE_ORDER",
+    "DESCRIPTION":"Purchase Order Consumption Model",
+    "CREATED_BY":"SAP_CUSTOMER",
+    "CREATED_AT":"+020260630194136",
+    "CHANGED_BY":"SAP_CUSTOMER",
+    "CHANGED_AT":"+020260630194136",
+    "ABAP_LANGUAGE_VERSION":"5",
+    "KIND":"OData_V4"
+   }
+  ]
+ },
+ {
+  "table":"TADIR",
+  "data":
+  [
+   {
+    "PGMID":"R3TR",
+    "OBJECT":"GCPM",
+    "OBJ_NAME":"ZEXED_SCM_PURCHASE_ORDER            0001",
+    "KORRNUM":"",
+    "SRCSYSTEM":"...",
+    "AUTHOR":"SAP_CUSTOMER",
+    "SRCDEP":"",
+    "DEVCLASS":"ZEXED_API_PURCHASE_ORDER",
+    "GENFLAG":"",
+    "EDTFLAG":"",
+    "CPROJECT":" L",
+    "MASTERLANG":"E",
+    "VERSID":"",
+    "PAKNOCHECK":"",
+    "OBJSTABLTY":"",
+    "COMPONENT":"",
+    "CRELEASE":"",
+    "DELFLAG":"",
+    "TRANSLTTXT":"",
+    "CREATED_ON":"2026-06-30",
+    "CHECK_DATE":"2026-06-30",
+    "CHECK_CFG":""
+   }
+  ]
+ }
+]
