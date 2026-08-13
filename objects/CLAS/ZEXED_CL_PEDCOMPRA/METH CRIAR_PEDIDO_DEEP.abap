@@ -125,7 +125,7 @@
                     purchase_order_item             = <fs_acc_ass>-Item
                     account_assignment_number       = <fs_acc_ass>-AccountAssignmentNumber
                     cost_center                     = <fs_acc_ass>-CostCenter
-                    wbselement_internal_id          = '128'
+*                    wbselement_internal_id          = '128'
                     wbselement_external_id          = <fs_acc_ass>-WBSElement
                     network_activity                = <fs_acc_ass>-NetworkActivity
                     quantity                        = <fs_acc_ass>-Quantity
@@ -207,7 +207,7 @@
                         ( |PURCHASE_ORDER_ITEM| )
                         ( |ACCOUNT_ASSIGNMENT_NUMBER| )
                         ( |COST_CENTER| )
-                        ( |WBSELEMENT_INTERNAL_ID| )
+*                        ( |WBSELEMENT_INTERNAL_ID| )
                         ( |WBSELEMENT_EXTERNAL_ID| )
                         ( |NETWORK_ACTIVITY| )
                         ( |QUANTITY| )
