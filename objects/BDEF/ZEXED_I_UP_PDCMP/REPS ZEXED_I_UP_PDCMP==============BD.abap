@@ -143,6 +143,7 @@ etag master LastChangedAt
       MultipleAcctAssgmtDistribution = multiple_acct_assgmt_distribut;
       AccountAssignmentCategory      = account_assignment_category;
       TaxCode                        = tax_code;
+      NetPriceQuantity               = net_price_quantity;
       LocalCreatedBy                 = local_created_by;
       LocalCreatedAt                 = local_created_at;
       LocalLastChangedBy             = local_last_changed_by;

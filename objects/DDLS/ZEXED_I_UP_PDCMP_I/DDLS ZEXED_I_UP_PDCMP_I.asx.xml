@@ -49,6 +49,7 @@ define view entity ZEXED_I_UP_PDCMP_I
         _AcctAssgmtDistrIndicatorText.DistributionKeyText as DistributionKeyText,
         account_assignment_category                       as AccountAssignmentCategory,
         tax_code                                          as TaxCode,
+        net_price_quantity                                as NetPriceQuantity,
         $session.system_language                          as Language,
         local_created_by                                  as LocalCreatedBy,
         local_created_at                                  as LocalCreatedAt,
@@ -88,7 +89,7 @@ define view entity ZEXED_I_UP_PDCMP_I
 }*/</SOURCE>
 <PARENTNAME></PARENTNAME>
 <ACTFLAG></ACTFLAG>
-<CHGFLAG></CHGFLAG>
+<CHGFLAG>54</CHGFLAG>
 <SOURCE_TYPE>W</SOURCE_TYPE>
 <SOURCE_ORIGIN>0</SOURCE_ORIGIN>
 <ABAP_LANGUAGE_VERSION>5</ABAP_LANGUAGE_VERSION>

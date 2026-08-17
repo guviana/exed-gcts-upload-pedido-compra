@@ -106,6 +106,7 @@
               multiple_acct_assgmt_distr       = <fs_item>-MultipleAcctAssgmtDistribution
               account_assignment_categor       = <fs_item>-AccountAssignmentCategory
               tax_code                         = <fs_item>-TaxCode
+              net_price_quantity               = <fs_item>-NetPriceQuantity
             ) TO <fs_api_header>-purchase_order_item
             ASSIGNING FIELD-SYMBOL(<fs_api_item>).
 
@@ -175,6 +176,7 @@
                   ( |MULTIPLE_ACCT_ASSGMT_DISTR| )
                   ( |ACCOUNT_ASSIGNMENT_CATEGOR| )
                   ( |TAX_CODE| )
+                  ( |NET_PRICE_QUANTITY| )
                 )
               ).
 
