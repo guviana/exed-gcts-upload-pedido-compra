@@ -93,6 +93,7 @@
 *          purchase_order_quantity_un       = <fs_item>-PurchaseOrderQuantityUnit     "Unid. Medida (item)
               purchase_order_quantity_un       = COND #( WHEN <fs_item>-PurchaseOrderQuantityUnit is not initial then zexed_cl_conv_exit_cunit=>convert_output( <fs_item>-PurchaseOrderQuantityUnit ) )     "Unid. Medida (item)
               net_price_amount                 = <fs_item>-NetPriceAmount
+              net_price_quantity               = <fs_item>-NetPriceQuantity
               order_quantity                   = <fs_item>-OrderQuantity
               is_completely_delivered          = abap_false         "Sempre False
               is_finally_invoiced              = abap_false         "Sempre False
@@ -106,7 +107,7 @@
               multiple_acct_assgmt_distr       = <fs_item>-MultipleAcctAssgmtDistribution
               account_assignment_categor       = <fs_item>-AccountAssignmentCategory
               tax_code                         = <fs_item>-TaxCode
-              net_price_quantity               = <fs_item>-NetPriceQuantity
+              ORDER_PRICE_UNIT              = COND #( WHEN <fs_item>-PurchaseOrderQuantityUnit is not initial then zexed_cl_conv_exit_cunit=>convert_output( <fs_item>-PurchaseOrderQuantityUnit ) )
             ) TO <fs_api_header>-purchase_order_item
             ASSIGNING FIELD-SYMBOL(<fs_api_item>).
 
@@ -164,6 +165,7 @@
                   ( |PLANT| )
                   ( |PURCHASE_ORDER_QUANTITY_UN| )
                   ( |NET_PRICE_AMOUNT| )
+                  ( |NET_PRICE_QUANTITY| )
                   ( |ORDER_QUANTITY| )
                   ( |IS_COMPLETELY_DELIVERED| )
                   ( |IS_FINALLY_INVOICED| )
@@ -176,7 +178,7 @@
                   ( |MULTIPLE_ACCT_ASSGMT_DISTR| )
                   ( |ACCOUNT_ASSIGNMENT_CATEGOR| )
                   ( |TAX_CODE| )
-                  ( |NET_PRICE_QUANTITY| )
+                  ( |ORDER_PRICE_UNIT| )
                 )
               ).
 
