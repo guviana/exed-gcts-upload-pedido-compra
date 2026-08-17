@@ -677,6 +677,7 @@ CLASS lhc_zexed_i_up_pdcmp IMPLEMENTATION.
                                               DocumentCurrency                  = <fs_excel_item>-document_currency
                                               PurchaseOrderQuantityUnit         = <fs_excel_item>-purchase_order_quantity_unit
                                               NetPriceAmount                    = <fs_excel_item>-net_price_amount
+                                              NetPriceQuantity                  = <fs_excel_item>-net_price_quantity
                                               OrderQuantity                     = <fs_excel_item>-order_quantity
                                               PurchaseRequisition               = <fs_excel_item>-purchase_requisition
                                               PurchaseRequisitionItem           = <fs_excel_item>-purchase_requisition_item
@@ -696,6 +697,7 @@ CLASS lhc_zexed_i_up_pdcmp IMPLEMENTATION.
                                               DocumentCurrency                = if_abap_behv=>mk-on
                                               PurchaseOrderQuantityUnit       = if_abap_behv=>mk-on
                                               NetPriceAmount                  = if_abap_behv=>mk-on
+                                              NetPriceQuantity                = if_abap_behv=>mk-on
                                               OrderQuantity                   = if_abap_behv=>mk-on
                                               PurchaseRequisition             = if_abap_behv=>mk-on
                                               PurchaseRequisitionItem         = if_abap_behv=>mk-on
