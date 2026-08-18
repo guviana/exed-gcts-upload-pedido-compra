@@ -611,7 +611,7 @@ CLASS zexed_scm_purchase_order DEFINITION
         "! OrderItemQtyToBaseQtyDnmntr
         order_item_qty_to_base_q_2 TYPE p LENGTH 3 DECIMALS 0,
         "! NetPriceQuantity
-        net_price_quantity         TYPE p LENGTH 3 DECIMALS 0,
+        net_price_quantity         TYPE p LENGTH 5 DECIMALS 0,
         "! IsCompletelyDelivered
         is_completely_delivered    TYPE abap_bool,
         "! IsFinallyInvoiced
