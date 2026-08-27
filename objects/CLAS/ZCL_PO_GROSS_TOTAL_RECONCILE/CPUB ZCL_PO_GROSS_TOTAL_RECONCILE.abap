@@ -1,0 +1,20 @@
+CLASS zcl_po_gross_total_reconcile DEFINITION
+  PUBLIC FINAL
+  CREATE PUBLIC.
+
+  PUBLIC SECTION.
+    INTERFACES if_apj_dt_exec_object.    " design time: job parameters
+    INTERFACES if_apj_rt_exec_object.    " runtime: execute
+
+    TYPES: BEGIN OF ty_update,
+             purchase_order TYPE i_purchaseorderapi01-purchaseorder,
+             gross_total    TYPE i_purchaseorderitemapi01-netamount,
+           END OF ty_update.
+    TYPES tt_update TYPE STANDARD TABLE OF ty_update WITH EMPTY KEY.
+
+    METHODS collect_drifting_orders
+      IMPORTING iv_hours_back    TYPE i
+      RETURNING VALUE(rt_update) TYPE tt_update.
+
+    METHODS apply_updates
+      IMPORTING it_update TYPE tt_update.
