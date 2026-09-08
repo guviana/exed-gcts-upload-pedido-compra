@@ -54,6 +54,6 @@
             ev_jobcount            = DATA(lv_jobcount) ).
 
       CATCH cx_root INTO DATA(lx_error).
-        " opcional: registrar lx_error->get_text( ) em log
+        data(lv_error_txt) = lx_error->get_text( ).
     ENDTRY.
   ENDMETHOD.
