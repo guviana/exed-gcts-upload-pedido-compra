@@ -9,7 +9,7 @@
            INNER JOIN i_purchaseorderapi01 AS hdr
              ON hdr~purchaseorder = item~purchaseorder
       WHERE item~purchaseorder                 = @iv_purchase_order
-*        AND item~purchasingdocumentdeletioncode = ''
+        AND item~purchasingdocumentdeletioncode = ''
 *        AND hdr~yy1_job_bruto_proc_pdh          = ''   " ver nota abaixo
       GROUP BY item~purchaseorder,
                hdr~yy1_bruto_total_pdh
