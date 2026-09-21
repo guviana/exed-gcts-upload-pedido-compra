@@ -10,9 +10,10 @@
         " a BO de PO aceita UM pedido por request (msg 052)
         MODIFY ENTITIES OF i_purchaseordertp_2
           ENTITY purchaseorder
-          UPDATE FIELDS ( yy1_bruto_total_pdh yy1_job_bruto_proc_pdh )
+          UPDATE FIELDS ( yy1_bruto_total_pdh yy1_bruto_total_pdhc yy1_job_bruto_proc_pdh )
           WITH VALUE #( ( purchaseorder          = ls_update-purchase_order
                           yy1_bruto_total_pdh    = ls_update-gross_total
+                          yy1_bruto_total_pdhc   = ls_update-documentcurrency
                           yy1_job_bruto_proc_pdh = 'X' ) )
 *                        ENTITY PurchaseOrderItem
 *                        UPDATE FIELDS ( yy1 )

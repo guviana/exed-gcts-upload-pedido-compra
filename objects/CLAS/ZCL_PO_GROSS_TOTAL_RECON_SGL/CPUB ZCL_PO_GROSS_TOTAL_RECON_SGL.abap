@@ -7,8 +7,9 @@ CLASS zcl_po_gross_total_recon_sgl DEFINITION
     INTERFACES if_apj_rt_exec_object.    " runtime: execute
 
     TYPES: BEGIN OF ty_update,
-             purchase_order TYPE i_purchaseorderapi01-purchaseorder,
-             gross_total    TYPE i_purchaseorderitemapi01-netamount,
+             purchase_order   TYPE i_purchaseorderapi01-purchaseorder,
+             gross_total      TYPE i_purchaseorderitemapi01-netamount,
+             documentcurrency TYPE i_purchaseorderapi01-documentcurrency,
            END OF ty_update.
     TYPES tt_update TYPE STANDARD TABLE OF ty_update WITH EMPTY KEY.
 
