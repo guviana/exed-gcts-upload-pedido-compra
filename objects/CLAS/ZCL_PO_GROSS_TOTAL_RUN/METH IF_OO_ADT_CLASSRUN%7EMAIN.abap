@@ -52,15 +52,15 @@
 *    CATCH cx_root INTO DATA(lx_error).
 *      " opcional: registrar lx_error->get_text( ) em log
 *  ENDTRY.
+    DATA: lv_purchase_order TYPE ebeln.
 
     DATA(lo_job) = NEW zcl_po_gross_total_recon_sgl( ).
 
-    DATA(lt_update) = lo_job->collect_drifting_orders(
-                        iv_purchase_order = '4500000068' ).
+    lv_purchase_order = '4500000068'.
 
-    LOOP AT lt_update ASSIGNING FIELD-SYMBOL(<fs_update>).
-      <fs_update>-gross_total = 0.
-    ENDLOOP.
+    DATA(lt_update) = lo_job->collect_drifting_orders(
+                        iv_purchase_order = lv_purchase_order
+                        iv_bypass_check   = 'X' ).
 
     IF lt_update IS NOT INITIAL.
       lo_job->apply_updates( it_update = lt_update ).

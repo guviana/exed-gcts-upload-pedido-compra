@@ -24,7 +24,7 @@
 *        CONTINUE.                              " já correto - não tocar
 *      ENDIF.
 
-      IF ls_check-stored_total <> ls_check-computed_total.
+      IF ls_check-stored_total <> ls_check-computed_total OR iv_bypass_check = 'X'.
         APPEND VALUE #( purchase_order      = ls_check-purchase_order
                         gross_total         = ls_check-computed_total
                         documentcurrency    = ls_check-documentcurrency ) TO rt_update.

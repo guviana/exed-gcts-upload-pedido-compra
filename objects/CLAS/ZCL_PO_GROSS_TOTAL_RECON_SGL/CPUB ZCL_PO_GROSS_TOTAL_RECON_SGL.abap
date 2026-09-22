@@ -15,6 +15,7 @@ CLASS zcl_po_gross_total_recon_sgl DEFINITION
 
     METHODS collect_drifting_orders
       IMPORTING iv_purchase_order TYPE i_purchaseorderapi01-purchaseorder
+                iv_bypass_check   TYPE c OPTIONAL
       RETURNING VALUE(rt_update)  TYPE tt_update.
 
     METHODS apply_updates
