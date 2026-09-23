@@ -56,7 +56,7 @@
 
     DATA(lo_job) = NEW zcl_po_gross_total_recon_sgl( ).
 
-    lv_purchase_order = '4500000068'.
+    lv_purchase_order = '4500000182'.
 
     DATA(lt_update) = lo_job->collect_drifting_orders(
                         iv_purchase_order = lv_purchase_order
