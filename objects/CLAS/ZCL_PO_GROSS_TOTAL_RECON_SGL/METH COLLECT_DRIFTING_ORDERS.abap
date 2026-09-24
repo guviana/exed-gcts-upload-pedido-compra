@@ -6,11 +6,11 @@
            hdr~yy1_bruto_total_pdh                                  AS stored_total,
            hdr~documentcurrency                                     AS documentcurrency,
            hdr~yy1_bruto_total_pdhc                                 AS stored_currency,
-           SUM( CASE item~materialtype
-                  WHEN 'MAT' THEN item~effectiveamount
-                  ELSE            item~netamount
-                END
-                + item~nondeductibleinputtaxamount )                AS computed_total
+           SUM( CASE item~producttype
+                  WHEN '1' THEN item~effectiveamount + item~nondeductibleinputtaxamount     "material
+                  WHEN '2' THEN item~effectiveamount                                        "servico
+                  ELSE          item~netamount + item~nondeductibleinputtaxamount           "outros
+                END ) AS computed_total
       FROM i_purchaseorderitemapi01 AS item
            INNER JOIN i_purchaseorderapi01 AS hdr
              ON hdr~purchaseorder = item~purchaseorder
