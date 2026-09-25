@@ -611,7 +611,7 @@ CLASS zexed_scm_purchase_order_ceec DEFINITION
         "! OrderItemQtyToBaseQtyDnmntr
         order_item_qty_to_base_q_2 TYPE p LENGTH 3 DECIMALS 0,
         "! NetPriceQuantity
-        net_price_quantity         TYPE p LENGTH 3 DECIMALS 0,
+        net_price_quantity         TYPE p LENGTH 5 DECIMALS 0,
         "! IsCompletelyDelivered
         is_completely_delivered    TYPE abap_bool,
         "! IsFinallyInvoiced
@@ -880,6 +880,12 @@ CLASS zexed_scm_purchase_order_ceec DEFINITION
         val_added_srvc_parent_itm  TYPE c LENGTH 5,
         "! StockSegment
         stock_segment              TYPE c LENGTH 40,
+        "! PurOrdItmInvcRtntnPct
+        pur_ord_itm_invc_rtntn_pct TYPE p LENGTH 3 DECIMALS 2,
+        "! YY1_ItemNF_PDI
+        yy_1_item_nf_pdi           TYPE c LENGTH 2,
+        "! YY1_ChaveAcessoNF_PDI
+        yy_1_chave_acesso_nf_pdi   TYPE c LENGTH 44,
         "! SAP__Messages
         sap_messages               TYPE tyt_sap_message,
       END OF tys_purchase_order_item_type,
@@ -1249,6 +1255,14 @@ CLASS zexed_scm_purchase_order_ceec DEFINITION
         purg_prod_cmplnc_tot_dngrs TYPE c LENGTH 1,
         "! PurchasingCollectiveNumber
         purchasing_collective_numb TYPE c LENGTH 10,
+        "! RetentionType
+        retention_type             TYPE c LENGTH 1,
+        "! PurOrdHdrInvcRtntnPct
+        pur_ord_hdr_invc_rtntn_pct TYPE p LENGTH 3 DECIMALS 2,
+        "! YY1_BRUTO_TOTAL_PDH
+        yy_1_bruto_total_pdh       TYPE decfloat16,
+        "! YY1_BRUTO_TOTAL_PDHC
+        yy_1_bruto_total_pdhc      TYPE c LENGTH 3,
         "! YY1_PRAZO_HEADER_PDH
         yy_1_prazo_header_pdh      TYPE c LENGTH 2,
         "! YY1_RIR_PDH

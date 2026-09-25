@@ -151,6 +151,8 @@ etag master LastChangedAt
       PurchaseContractItem           = purchase_contract_item;
       GoodsReceiptIsExpected         = goods_receipt_is_expected;
       InvoiceIsGoodsReceiptBased     = invoice_is_goods_receipt_b;
+      YY1_ItemNF_PDI                 = yy_1_item_nf_pdi;
+      YY1_ChaveAcessoNF_PDI          = yy_1_chave_acesso_nf_pdi;
       LocalCreatedBy                 = local_created_by;
       LocalCreatedAt                 = local_created_at;
       LocalLastChangedBy             = local_last_changed_by;

@@ -81,6 +81,8 @@ CLASS zexed_cl_upload_pedcompra DEFINITION
              purchase_contract_item       TYPE string,   "Item do Contrato
              goods_receipt_is_expected    TYPE string,
              invoice_is_goods_receipt_b   TYPE string,
+             yy_1_chave_acesso_nf_pdi     TYPE string,
+             yy_1_item_nf_pdi             TYPE string,
              to_account_assignment        TYPE STANDARD TABLE OF zexed_cl_upload_pedcompra=>ty_excel_po_i_acc WITH EMPTY KEY,
            END OF ty_excel_po_i.
 
@@ -125,6 +127,8 @@ CLASS zexed_cl_upload_pedcompra DEFINITION
                  purchase_contract_item       TYPE string VALUE `CONTRATO_ITEM`,
                  goods_receipt_is_expected    TYPE string VALUE `EM`,
                  invoice_is_goods_receipt_b   TYPE string VALUE `FatBasEM`,
+                 yy_1_chave_acesso_nf_pdi     TYPE string VALUE `Chave de Acesso`,
+                 yy_1_item_nf_pdi             TYPE string VALUE `XML`,
                END OF c_excel_it_headers,
                BEGIN OF c_excel_acc_headers,
                  purchase_order                 TYPE string VALUE `PEDIDO COMPRA`,

@@ -137,10 +137,10 @@ CLASS lhc_purchaseorder IMPLEMENTATION.
                 TO lt_update.
 
 
-            MODIFY ENTITIES OF zexed_i_up_pdcmp IN LOCAL MODE
-              ENTITY PurchaseOrder
-              UPDATE FIELDS ( Status CriticalityStatus )
-              WITH lt_update.
+                MODIFY ENTITIES OF zexed_i_up_pdcmp IN LOCAL MODE
+                  ENTITY PurchaseOrder
+                  UPDATE FIELDS ( Status CriticalityStatus )
+                  WITH lt_update.
 
                 RETURN.
               ELSEIF ls_pur_req-PurReqnReleaseStatus <> '05'.
@@ -160,10 +160,10 @@ CLASS lhc_purchaseorder IMPLEMENTATION.
                 TO lt_update.
 
 
-            MODIFY ENTITIES OF zexed_i_up_pdcmp IN LOCAL MODE
-              ENTITY PurchaseOrder
-              UPDATE FIELDS ( Status CriticalityStatus )
-              WITH lt_update.
+                MODIFY ENTITIES OF zexed_i_up_pdcmp IN LOCAL MODE
+                  ENTITY PurchaseOrder
+                  UPDATE FIELDS ( Status CriticalityStatus )
+                  WITH lt_update.
 
                 RETURN.
               ENDIF.
@@ -803,6 +803,8 @@ CLASS lhc_zexed_i_up_pdcmp IMPLEMENTATION.
                                               PurchaseContractItem              = <fs_excel_item>-purchase_contract_item
                                               GoodsReceiptIsExpected            = <fs_excel_item>-goods_receipt_is_expected
                                               InvoiceIsGoodsReceiptBased        = <fs_excel_item>-invoice_is_goods_receipt_b
+                                              YY1_ChaveAcessoNF_PDI             = <fs_excel_item>-yy_1_chave_acesso_nf_pdi
+                                              YY1_ItemNF_PDI                    = <fs_excel_item>-yy_1_item_nf_pdi
                                             )
                                           %control = VALUE #(
                                               uuid                            = if_abap_behv=>mk-on
@@ -826,6 +828,8 @@ CLASS lhc_zexed_i_up_pdcmp IMPLEMENTATION.
                                               PurchaseContractItem            = if_abap_behv=>mk-on
                                               GoodsReceiptIsExpected          = if_abap_behv=>mk-on
                                               InvoiceIsGoodsReceiptBased      = if_abap_behv=>mk-on
+                                              YY1_ChaveAcessoNF_PDI           = if_abap_behv=>mk-on
+                                              YY1_ItemNF_PDI                  = if_abap_behv=>mk-on
                                             )
                                         ) ) ) TO lt_po_item_create.
 

@@ -9,9 +9,9 @@
     "MPC_NAME":"ZEXED_SCM_PURCHASE_ORDER_CEEC",
     "DESCRIPTION":"Custom Purchase Order (custom fields)",
     "CREATED_BY":"SAP_CUSTOMER",
-    "CREATED_AT":"+020260714130946",
+    "CREATED_AT":"+020260925134937",
     "CHANGED_BY":"SAP_CUSTOMER",
-    "CHANGED_AT":"+020260714130946",
+    "CHANGED_AT":"+020260925134937",
     "ABAP_LANGUAGE_VERSION":"5",
     "KIND":"OData_V4"
    }
@@ -41,8 +41,8 @@
     "CRELEASE":"",
     "DELFLAG":"",
     "TRANSLTTXT":"",
-    "CREATED_ON":"2026-07-14",
-    "CHECK_DATE":"2026-07-14",
+    "CREATED_ON":"2026-09-25",
+    "CHECK_DATE":"2026-09-25",
     "CHECK_CFG":""
    }
   ]

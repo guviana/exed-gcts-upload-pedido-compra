@@ -860,6 +860,22 @@
     lo_primitive_property->set_edm_type( 'String' ) ##NO_TEXT.
     lo_primitive_property->set_max_length( 40 ) ##NUMBER_OK.
 
+    lo_primitive_property = lo_entity_type->get_primitive_property( 'PUR_ORD_ITM_INVC_RTNTN_PCT' ).
+    lo_primitive_property->set_edm_name( 'PurOrdItmInvcRtntnPct' ) ##NO_TEXT.
+    lo_primitive_property->set_edm_type( 'Decimal' ) ##NO_TEXT.
+    lo_primitive_property->set_precision( 5 ) ##NUMBER_OK.
+    lo_primitive_property->set_scale( 2 ) ##NUMBER_OK.
+
+    lo_primitive_property = lo_entity_type->get_primitive_property( 'YY_1_ITEM_NF_PDI' ).
+    lo_primitive_property->set_edm_name( 'YY1_ItemNF_PDI' ) ##NO_TEXT.
+    lo_primitive_property->set_edm_type( 'String' ) ##NO_TEXT.
+    lo_primitive_property->set_max_length( 2 ) ##NUMBER_OK.
+
+    lo_primitive_property = lo_entity_type->get_primitive_property( 'YY_1_CHAVE_ACESSO_NF_PDI' ).
+    lo_primitive_property->set_edm_name( 'YY1_ChaveAcessoNF_PDI' ) ##NO_TEXT.
+    lo_primitive_property->set_edm_type( 'String' ) ##NO_TEXT.
+    lo_primitive_property->set_max_length( 44 ) ##NUMBER_OK.
+
     lo_complex_property = lo_entity_type->create_complex_property( 'SAP_MESSAGES' ).
     lo_complex_property->set_edm_name( 'SAP__Messages' ) ##NO_TEXT.
     lo_complex_property->set_complex_type( 'SAP_MESSAGE' ).

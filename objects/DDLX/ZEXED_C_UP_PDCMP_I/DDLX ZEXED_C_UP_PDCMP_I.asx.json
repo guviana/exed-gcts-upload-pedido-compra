@@ -7,9 +7,9 @@
     "DDLXNAME":"ZEXED_C_UP_PDCMP_I",
     "VERSION":"A",
     "CHANGED_BY":"SAP_CUSTOMER",
-    "CHANGED_ON":"2026-08-12",
-    "CHANGED_AT":"16:57:46",
-    "UUID":"000D3A8B8E841FD1A5CDDE2916595725",
+    "CHANGED_ON":"2026-09-25",
+    "CHANGED_AT":"16:43:34",
+    "UUID":"000D3A8B8E841FD1AEA007F0F9BA5982",
     "ABAP_LANGUAGE_VERSION":"5"
    }
   ]
@@ -34,7 +34,7 @@
     "DDLXNAME":"ZEXED_C_UP_PDCMP_I",
     "VERSION":"A",
     "UUID":"",
-    "SOURCE":"@Metadata.layer: #CORE\r\n@UI: { headerInfo: { typeName: 'Item',\r\n                     typeNamePlural: 'Itens',\r\n                     title: { type: #STANDARD, label: 'Item', value: 'LabelItem' },\r\n                     description: { value: 'Material' } } }\r\nannotate entity ZEXED_C_UP_PDCMP_I with\r\n{\r\n  @UI.facet: [\r\n    {\r\n      id: 'idItemHeader',\r\n      purpose: #STANDARD,\r\n      label: 'Pedido de Compra',\r\n      type: #IDENTIFICATION_REFERENCE,\r\n      position: 10\r\n    },\r\n    {\r\n      id: 'idItemFieldgroup',\r\n      parentId: 'idItemHeader',\r\n      type: #FIELDGROUP_REFERENCE,\r\n      label: 'Dados de Cabeçalho',\r\n      position: 10,\r\n      targetQualifier: 'idItemFieldgroup1'\r\n    },\r\n    {\r\n      id: 'idItemAccAss',\r\n      purpose: #STANDARD,\r\n      label: 'Class. Contábil',\r\n      type: #COLLECTION,\r\n      position: 20\r\n    },\r\n    {\r\n      id: 'idAccAssTable',\r\n      parentId: 'idItemAccAss',\r\n      purpose:  #STANDARD,\r\n      type:     #LINEITEM_REFERENCE,\r\n      label:    'Class. Contábil',\r\n      position: 10,\r\n      targetElement: '_AccAssignment'\r\n    }\r\n  ]\r\n\r\n  //  \"----------------------------\r\n  //  \" Technical keys (hidden)\r\n  //  \"----------------------------\r\n  @UI.hidden: true\r\n  @UI.lineItem: [ { position: 1, importance: #LOW } ]\r\n  UUID;\r\n\r\n  @UI.hidden: true\r\n  @UI.lineItem: [ { position: 2, importance: #LOW } ]\r\n  ParentUUID;\r\n\r\n  @UI.hidden: true\r\n  FileUUID;\r\n\r\n  //  \"----------------------------\r\n  //  \" Header / Main fields\r\n  //  \"----------------------------\r\n  //  @UI.lineItem:       [ { position: 10, label: 'Pedido de Compra' } ]\r\n  //  @UI.identification: [ { position: 10 } ]\r\n  //  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 10, label: 'Pedido de Compra' } ]\r\n  @UI.hidden: true\r\n  PurchaseOrder;\r\n\r\n  @UI.lineItem:       [ { position: 20, label: 'Item' } ]\r\n  @UI.identification: [ { position: 20 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 20 } ]\r\n  Item;\r\n\r\n  @UI.lineItem:       [ { position: 30, label: 'Material' } ]\r\n  @UI.identification: [ { position: 30 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 30 } ]\r\n  Material;\r\n\r\n  @UI.lineItem:       [ { position: 40, label: 'Centro' } ]\r\n  @UI.identification: [ { position: 40 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 40 } ]\r\n  Plant;\r\n\r\n  //  \"----------------------------\r\n  //  \" New fields (requested)\r\n  //  \"----------------------------\r\n  @EndUserText.label: 'Moeda'\r\n  @UI.identification: [ { position: 50 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 50 } ]\r\n  DocumentCurrency;\r\n\r\n  @EndUserText.label: 'Unid. Qtde. Pedido'\r\n  @UI.identification: [ { position: 60 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 60 } ]\r\n  PurchaseOrderQuantityUnit;\r\n\r\n  @EndUserText.label: 'Preço Líquido'\r\n  @UI.identification: [ { position: 70 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 70 } ]\r\n  NetPriceAmount;\r\n\r\n  @EndUserText.label: 'Quantidade'\r\n  @UI.identification: [ { position: 80 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 80 } ]\r\n  OrderQuantity;\r\n\r\n  @EndUserText.label: 'Requisição de Compras'\r\n  @UI.identification: [ { position: 90 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 90 } ]\r\n  PurchaseRequisition;\r\n\r\n  @EndUserText.label: 'Item da Requisição'\r\n  @UI.identification: [ { position: 100 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 100 } ]\r\n  PurchaseRequisitionItem;\r\n\r\n  @EndUserText.label: 'Unidade Base'\r\n  @UI.identification: [ { position: 110 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 110 } ]\r\n  BaseUnit;\r\n\r\n  @EndUserText.label: 'Rateio'\r\n  @UI.identification: [ { position: 120 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 120 } ]\r\n  MultipleAcctAssgmtDistribution;\r\n\r\n  @EndUserText.label: 'Cat. Atribuição Contábil'\r\n  @UI.identification: [ { position: 130 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 130 } ]\r\n  AccountAssignmentCategory;\r\n\r\n  @EndUserText.label: 'Código IVA'\r\n  @UI.identification: [ { position: 140 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 140 } ]\r\n  TaxCode;\r\n\r\n  @EndUserText.label: 'Contrato de Compras'\r\n  @UI.identification: [ { position: 150 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 90 } ]\r\n  PurchaseContract;\r\n\r\n  @EndUserText.label: 'Item da Contrato'\r\n  @UI.identification: [ { position: 160 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 100 } ]\r\n  PurchaseContractItem;\r\n\r\n\r\n  @EndUserText.label: 'EM'\r\n  @UI.identification: [ { position: 170 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 170 } ]\r\n  GoodsReceiptIsExpected;\r\n\r\n  @EndUserText.label: 'FatBasEM'\r\n  @UI.identification: [ { position: 180 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 180 } ]\r\n  InvoiceIsGoodsReceiptBased;\r\n}"
+    "SOURCE":"@Metadata.layer: #CORE\r\n@UI: { headerInfo: { typeName: 'Item',\r\n                     typeNamePlural: 'Itens',\r\n                     title: { type: #STANDARD, label: 'Item', value: 'LabelItem' },\r\n                     description: { value: 'Material' } } }\r\nannotate entity ZEXED_C_UP_PDCMP_I with\r\n{\r\n  @UI.facet: [\r\n    {\r\n      id: 'idItemHeader',\r\n      purpose: #STANDARD,\r\n      label: 'Pedido de Compra',\r\n      type: #IDENTIFICATION_REFERENCE,\r\n      position: 10\r\n    },\r\n    {\r\n      id: 'idItemFieldgroup',\r\n      parentId: 'idItemHeader',\r\n      type: #FIELDGROUP_REFERENCE,\r\n      label: 'Dados de Cabeçalho',\r\n      position: 10,\r\n      targetQualifier: 'idItemFieldgroup1'\r\n    },\r\n    {\r\n      id: 'idItemAccAss',\r\n      purpose: #STANDARD,\r\n      label: 'Class. Contábil',\r\n      type: #COLLECTION,\r\n      position: 20\r\n    },\r\n    {\r\n      id: 'idAccAssTable',\r\n      parentId: 'idItemAccAss',\r\n      purpose:  #STANDARD,\r\n      type:     #LINEITEM_REFERENCE,\r\n      label:    'Class. Contábil',\r\n      position: 10,\r\n      targetElement: '_AccAssignment'\r\n    }\r\n  ]\r\n\r\n  //  \"----------------------------\r\n  //  \" Technical keys (hidden)\r\n  //  \"----------------------------\r\n  @UI.hidden: true\r\n  @UI.lineItem: [ { position: 1, importance: #LOW } ]\r\n  UUID;\r\n\r\n  @UI.hidden: true\r\n  @UI.lineItem: [ { position: 2, importance: #LOW } ]\r\n  ParentUUID;\r\n\r\n  @UI.hidden: true\r\n  FileUUID;\r\n\r\n  //  \"----------------------------\r\n  //  \" Header / Main fields\r\n  //  \"----------------------------\r\n  //  @UI.lineItem:       [ { position: 10, label: 'Pedido de Compra' } ]\r\n  //  @UI.identification: [ { position: 10 } ]\r\n  //  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 10, label: 'Pedido de Compra' } ]\r\n  @UI.hidden: true\r\n  PurchaseOrder;\r\n\r\n  @UI.lineItem:       [ { position: 20, label: 'Item' } ]\r\n  @UI.identification: [ { position: 20 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 20 } ]\r\n  Item;\r\n\r\n  @UI.lineItem:       [ { position: 30, label: 'Material' } ]\r\n  @UI.identification: [ { position: 30 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 30 } ]\r\n  Material;\r\n\r\n  @UI.lineItem:       [ { position: 40, label: 'Centro' } ]\r\n  @UI.identification: [ { position: 40 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 40 } ]\r\n  Plant;\r\n\r\n  //  \"----------------------------\r\n  //  \" New fields (requested)\r\n  //  \"----------------------------\r\n  @EndUserText.label: 'Moeda'\r\n  @UI.identification: [ { position: 50 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 50 } ]\r\n  DocumentCurrency;\r\n\r\n  @EndUserText.label: 'Unid. Qtde. Pedido'\r\n  @UI.identification: [ { position: 60 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 60 } ]\r\n  PurchaseOrderQuantityUnit;\r\n\r\n  @EndUserText.label: 'Preço Líquido'\r\n  @UI.identification: [ { position: 70 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 70 } ]\r\n  NetPriceAmount;\r\n\r\n  @EndUserText.label: 'Quantidade'\r\n  @UI.identification: [ { position: 80 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 80 } ]\r\n  OrderQuantity;\r\n\r\n  @EndUserText.label: 'Requisição de Compras'\r\n  @UI.identification: [ { position: 90 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 90 } ]\r\n  PurchaseRequisition;\r\n\r\n  @EndUserText.label: 'Item da Requisição'\r\n  @UI.identification: [ { position: 100 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 100 } ]\r\n  PurchaseRequisitionItem;\r\n\r\n  @EndUserText.label: 'Unidade Base'\r\n  @UI.identification: [ { position: 110 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 110 } ]\r\n  BaseUnit;\r\n\r\n  @EndUserText.label: 'Rateio'\r\n  @UI.identification: [ { position: 120 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 120 } ]\r\n  MultipleAcctAssgmtDistribution;\r\n\r\n  @EndUserText.label: 'Cat. Atribuição Contábil'\r\n  @UI.identification: [ { position: 130 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 130 } ]\r\n  AccountAssignmentCategory;\r\n\r\n  @EndUserText.label: 'Código IVA'\r\n  @UI.identification: [ { position: 140 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 140 } ]\r\n  TaxCode;\r\n\r\n  @EndUserText.label: 'Contrato de Compras'\r\n  @UI.identification: [ { position: 150 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 90 } ]\r\n  PurchaseContract;\r\n\r\n  @EndUserText.label: 'Item da Contrato'\r\n  @UI.identification: [ { position: 160 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 100 } ]\r\n  PurchaseContractItem;\r\n\r\n\r\n  @EndUserText.label: 'EM'\r\n  @UI.identification: [ { position: 170 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 170 } ]\r\n  GoodsReceiptIsExpected;\r\n\r\n  @EndUserText.label: 'FatBasEM'\r\n  @UI.identification: [ { position: 180 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 180 } ]\r\n  InvoiceIsGoodsReceiptBased;\r\n\r\n  @EndUserText.label: 'Chave de Acesso'\r\n  @UI.identification: [ { position: 190 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 190 } ]\r\n  YY1_ChaveAcessoNF_PDI;\r\n  \r\n  @EndUserText.label: 'Nº Item da NF'\r\n  @UI.identification: [ { position: 200 } ]\r\n  @UI.fieldGroup:     [ { qualifier: 'idItemFieldgroup1', position: 200 } ]\r\n  YY1_ItemNF_PDI;\r\n}"
    }
   ]
  },
@@ -797,6 +797,62 @@
     "NAME":"UI.LINEITEM$1$.POSITION",
     "ELEMENT_TYPE":"S",
     "VALUE":"1"
+   },
+   {
+    "DDLXNAME":"ZEXED_C_UP_PDCMP_I",
+    "ELEMENT":"YY1_CHAVEACESSONF_PDI",
+    "NAME":"ENDUSERTEXT.LABEL",
+    "ELEMENT_TYPE":"S",
+    "VALUE":"'Chave de Acesso'"
+   },
+   {
+    "DDLXNAME":"ZEXED_C_UP_PDCMP_I",
+    "ELEMENT":"YY1_CHAVEACESSONF_PDI",
+    "NAME":"UI.FIELDGROUP$1$.POSITION",
+    "ELEMENT_TYPE":"S",
+    "VALUE":"190"
+   },
+   {
+    "DDLXNAME":"ZEXED_C_UP_PDCMP_I",
+    "ELEMENT":"YY1_CHAVEACESSONF_PDI",
+    "NAME":"UI.FIELDGROUP$1$.QUALIFIER",
+    "ELEMENT_TYPE":"S",
+    "VALUE":"'idItemFieldgroup1'"
+   },
+   {
+    "DDLXNAME":"ZEXED_C_UP_PDCMP_I",
+    "ELEMENT":"YY1_CHAVEACESSONF_PDI",
+    "NAME":"UI.IDENTIFICATION$1$.POSITION",
+    "ELEMENT_TYPE":"S",
+    "VALUE":"190"
+   },
+   {
+    "DDLXNAME":"ZEXED_C_UP_PDCMP_I",
+    "ELEMENT":"YY1_ITEMNF_PDI",
+    "NAME":"ENDUSERTEXT.LABEL",
+    "ELEMENT_TYPE":"S",
+    "VALUE":"'Nº Item da NF'"
+   },
+   {
+    "DDLXNAME":"ZEXED_C_UP_PDCMP_I",
+    "ELEMENT":"YY1_ITEMNF_PDI",
+    "NAME":"UI.FIELDGROUP$1$.POSITION",
+    "ELEMENT_TYPE":"S",
+    "VALUE":"200"
+   },
+   {
+    "DDLXNAME":"ZEXED_C_UP_PDCMP_I",
+    "ELEMENT":"YY1_ITEMNF_PDI",
+    "NAME":"UI.FIELDGROUP$1$.QUALIFIER",
+    "ELEMENT_TYPE":"S",
+    "VALUE":"'idItemFieldgroup1'"
+   },
+   {
+    "DDLXNAME":"ZEXED_C_UP_PDCMP_I",
+    "ELEMENT":"YY1_ITEMNF_PDI",
+    "NAME":"UI.IDENTIFICATION$1$.POSITION",
+    "ELEMENT_TYPE":"S",
+    "VALUE":"200"
    }
   ]
  },
@@ -971,6 +1027,20 @@
     "ELEMENT":"UUID",
     "NAME":"UI.FACET$4$.LABEL",
     "TEXT":"Class. Contábil"
+   },
+   {
+    "DDLXNAME":"ZEXED_C_UP_PDCMP_I",
+    "DDLANGUAGE":"E",
+    "ELEMENT":"YY1_CHAVEACESSONF_PDI",
+    "NAME":"ENDUSERTEXT.LABEL",
+    "TEXT":"Chave de Acesso"
+   },
+   {
+    "DDLXNAME":"ZEXED_C_UP_PDCMP_I",
+    "DDLANGUAGE":"E",
+    "ELEMENT":"YY1_ITEMNF_PDI",
+    "NAME":"ENDUSERTEXT.LABEL",
+    "TEXT":"Nº Item da NF"
    }
   ]
  },
@@ -983,8 +1053,8 @@
     "EXTENDED_ARTIFACT":"ZEXED_C_UP_PDCMP_I",
     "VARIANT":"",
     "LAYER":1500,
-    "DT_UUID":"000D3A8B8E841FD1A5CDDE2916595725",
-    "RT_HASH":"F7B71909659F25AA0A4463302BD3E905371460AE",
+    "DT_UUID":"000D3A8B8E841FD1AEA007F0F9BA5982",
+    "RT_HASH":"A710E6E8E1DD3E28BD091774F44A86CD91009F62",
     "GEN_VERSION":"0",
     "TYPE":"0"
    }

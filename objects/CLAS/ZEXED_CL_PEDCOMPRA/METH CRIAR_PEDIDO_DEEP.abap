@@ -115,6 +115,8 @@
                   purchase_contract_item           = <fs_item>-PurchaseContractItem
                   goods_receipt_is_expected        = <fs_item>-GoodsReceiptIsExpected
                   invoice_is_goods_receipt_b       = <fs_item>-InvoiceIsGoodsReceiptBased
+                  yy_1_chave_acesso_nf_pdi         = <fs_item>-YY1_ChaveAcessoNF_PDI
+                  yy_1_item_nf_pdi                 = <fs_item>-YY1_ItemNF_PDI
                 ) TO <fs_api_header>-purchase_order_item
                 ASSIGNING FIELD-SYMBOL(<fs_api_item>).
 
@@ -137,7 +139,7 @@
                     glaccount                       = <fs_acc_ass>-GLAccount
                     master_fixed_asset              = <fs_acc_ass>-MasterFixedAsset
 *                project_network                 = <fs_acc_ass>-ProjectNetwork
-                    company_code = <fs_header>-CompanyCode
+                    company_code                    = <fs_header>-CompanyCode
                    ) TO <fs_api_item>-pur_ord_account_assignment.
                 ENDLOOP.
               ENDLOOP.
@@ -195,6 +197,8 @@
                       ( |PURCHASE_CONTRACT_ITEM| )
                       ( |GOODS_RECEIPT_IS_EXPECTED| )
                       ( |INVOICE_IS_GOODS_RECEIPT_B| )
+                      ( |YY_1_CHAVE_ACESSO_NF_PDI| )
+                      ( |YY_1_ITEM_NF_PDI| )
                     )
                   ).
 

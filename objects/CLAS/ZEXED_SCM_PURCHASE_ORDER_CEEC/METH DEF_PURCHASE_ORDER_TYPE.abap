@@ -371,6 +371,28 @@
     lo_primitive_property->set_edm_type( 'String' ) ##NO_TEXT.
     lo_primitive_property->set_max_length( 10 ) ##NUMBER_OK.
 
+    lo_primitive_property = lo_entity_type->get_primitive_property( 'RETENTION_TYPE' ).
+    lo_primitive_property->set_edm_name( 'RetentionType' ) ##NO_TEXT.
+    lo_primitive_property->set_edm_type( 'String' ) ##NO_TEXT.
+    lo_primitive_property->set_max_length( 1 ) ##NUMBER_OK.
+
+    lo_primitive_property = lo_entity_type->get_primitive_property( 'PUR_ORD_HDR_INVC_RTNTN_PCT' ).
+    lo_primitive_property->set_edm_name( 'PurOrdHdrInvcRtntnPct' ) ##NO_TEXT.
+    lo_primitive_property->set_edm_type( 'Decimal' ) ##NO_TEXT.
+    lo_primitive_property->set_precision( 5 ) ##NUMBER_OK.
+    lo_primitive_property->set_scale( 2 ) ##NUMBER_OK.
+
+    lo_primitive_property = lo_entity_type->get_primitive_property( 'YY_1_BRUTO_TOTAL_PDH' ).
+    lo_primitive_property->set_edm_name( 'YY1_BRUTO_TOTAL_PDH' ) ##NO_TEXT.
+    lo_primitive_property->set_edm_type( 'Decimal' ) ##NO_TEXT.
+    lo_primitive_property->set_precision( 15 ) ##NUMBER_OK.
+    lo_primitive_property->set_scale_variable( ).
+
+    lo_primitive_property = lo_entity_type->get_primitive_property( 'YY_1_BRUTO_TOTAL_PDHC' ).
+    lo_primitive_property->set_edm_name( 'YY1_BRUTO_TOTAL_PDHC' ) ##NO_TEXT.
+    lo_primitive_property->set_edm_type( 'String' ) ##NO_TEXT.
+    lo_primitive_property->set_max_length( 3 ) ##NUMBER_OK.
+
     lo_primitive_property = lo_entity_type->get_primitive_property( 'YY_1_PRAZO_HEADER_PDH' ).
     lo_primitive_property->set_edm_name( 'YY1_PRAZO_HEADER_PDH' ) ##NO_TEXT.
     lo_primitive_property->set_edm_type( 'String' ) ##NO_TEXT.
