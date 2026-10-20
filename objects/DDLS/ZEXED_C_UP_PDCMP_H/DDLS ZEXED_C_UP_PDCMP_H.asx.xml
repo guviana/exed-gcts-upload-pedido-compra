@@ -86,6 +86,7 @@ define view entity ZEXED_C_UP_PDCMP_H
         @Search.defaultSearchElement: true
         @Search.fuzzinessThreshold: 0.8
         PaymentTerms,
+        MiroHeaderText,
         CompanyName,
         SupplierName,
         PurchaseOrganizationName,
@@ -135,7 +136,7 @@ define view entity ZEXED_C_UP_PDCMP_H
 }*/</SOURCE>
 <PARENTNAME></PARENTNAME>
 <ACTFLAG></ACTFLAG>
-<CHGFLAG>J,W4T2Z9</CHGFLAG>
+<CHGFLAG>54D</CHGFLAG>
 <SOURCE_TYPE>P</SOURCE_TYPE>
 <SOURCE_ORIGIN>0</SOURCE_ORIGIN>
 <ABAP_LANGUAGE_VERSION>5</ABAP_LANGUAGE_VERSION>
@@ -156,6 +157,12 @@ define view entity ZEXED_C_UP_PDCMP_H
 <DDLANGUAGE>E</DDLANGUAGE>
 <AS4LOCAL>N</AS4LOCAL>
 <DDTEXT>Consumption View for ZMM_I_UP_PDCMP_H</DDTEXT>
+</DDDDLSRCT>
+<DDDDLSRCT>
+<DDLNAME>ZEXED_C_UP_PDCMP_H</DDLNAME>
+<DDLANGUAGE>P</DDLANGUAGE>
+<AS4LOCAL>N</AS4LOCAL>
+<DDTEXT></DDTEXT>
 </DDDDLSRCT>
 </DDDDLSRCT>
 <DDFIELDANNO>

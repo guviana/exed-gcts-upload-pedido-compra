@@ -97,6 +97,7 @@ etag master LastChangedAt
       PurchaseGroup        = purchase_grp;
       Supplier             = supplier;
       PaymentTerms         = payment_terms;
+      MiroHeaderText       = miro_header_text;
       LocalCreatedBy       = local_created_by;
       LocalCreatedAt       = local_created_at;
       LocalLastChangedBy   = local_last_changed_by;

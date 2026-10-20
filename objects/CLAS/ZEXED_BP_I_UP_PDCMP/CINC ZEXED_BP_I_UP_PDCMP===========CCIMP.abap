@@ -558,7 +558,8 @@ CLASS lhc_zexed_i_up_pdcmp IMPLEMENTATION.
                                             PurchaseGroup        = <fs_excel>-purchase_grp
                                             Supplier             = <fs_excel>-supplier
                                             PaymentTerms         = <fs_excel>-payment_terms
-                                            Status               = zexed_bp_i_up_pdcmp=>c_msg_status_not_published
+                                            MiroHeaderText       = <fs_excel>-miro_header_text
+                                            Status              = zexed_bp_i_up_pdcmp=>c_msg_status_not_published
                                             CriticalityStatus    = 2
                                           )
                                         %control = VALUE #(
@@ -572,7 +573,8 @@ CLASS lhc_zexed_i_up_pdcmp IMPLEMENTATION.
                                             PurchaseGroup        = if_abap_behv=>mk-on
                                             Supplier             = if_abap_behv=>mk-on
                                             PaymentTerms         = if_abap_behv=>mk-on
-                                            Status               = if_abap_behv=>mk-on
+                                            MiroHeaderText       = if_abap_behv=>mk-on
+                                            Status              = if_abap_behv=>mk-on
                                             CriticalityStatus    = if_abap_behv=>mk-on
                                           )
 

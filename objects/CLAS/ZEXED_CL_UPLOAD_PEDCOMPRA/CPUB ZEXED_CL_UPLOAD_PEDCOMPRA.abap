@@ -28,6 +28,7 @@ CLASS zexed_cl_upload_pedcompra DEFINITION
              purchase_grp        TYPE string,
              supplier            TYPE string,
              payment_terms       TYPE string,
+             miro_header_text    TYPE string,
            END OF ty_excel_po_h.
 
     TYPES gt_excel_po_h TYPE TABLE OF ty_excel_po_h.
@@ -85,6 +86,7 @@ CLASS zexed_cl_upload_pedcompra DEFINITION
                  purchase_grp        TYPE string VALUE `GRP. COMPRA`,
                  supplier            TYPE string VALUE `FORNECEDOR`,
                  payment_terms       TYPE string VALUE `TERMO PGTO.`,
+                 miro_header_text    TYPE string VALUE `TEXTO CABEC. MIRO`,
                END OF c_excel_headers,
                BEGIN OF c_excel_it_headers,
                  purchase_order               TYPE string VALUE `PEDIDO COMPRA`,

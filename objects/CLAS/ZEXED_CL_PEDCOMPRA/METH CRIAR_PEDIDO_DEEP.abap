@@ -218,6 +218,15 @@
                 ls_return-msgty = 'S'.
                 ls_return-msg   = |Pedido de Compra  { ls_api_response-purchase_order } criado com sucesso!|.
                 ls_return-new_po = ls_api_response-purchase_order.
+
+                IF <fs_header>-MiroHeaderText IS NOT INITIAL.
+                  DATA(lv_text_error) = set_miro_header_text( io_destination    = lo_destination
+                                                              iv_purchase_order = ls_api_response-purchase_order
+                                                              iv_text           = CONV #( <fs_header>-MiroHeaderText ) ).
+                  IF lv_text_error IS NOT INITIAL.
+                    ls_return-msg = |{ ls_return-msg } Texto Cabeç.MIRO não gravado: { lv_text_error }|.
+                  ENDIF.
+                ENDIF.
               ELSE.
                 ls_return-msgty = 'E'.
                 ls_return-msg   = |Erro ao publicar pedido|.
